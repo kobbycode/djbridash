@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary/30;
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 53, 0.2);
+}
+
+.gold-gradient-text {
+  background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link-active {
+  color: var(--color-primary) !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.nav-link-active::after {
+  width: 100%;
+}
+
+.waveform-bar {
+  width: 3px;
+  background: #d4af35;
+  margin: 0 1px;
+  border-radius: 1px;
+}
+
+/* Mobile Menu Overlay */
+#mobile-menu-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+#mobile-menu-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#mobile-menu {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(100%);
+}
+
+#mobile-menu.active {
+  transform: translateX(0);
+}
+
+.mobile-nav-link {
+  @apply text-lg font-black uppercase tracking-widest py-4 border-b border-primary/10 w-full text-center transition-colors;
+}
+
+@theme {
+  --color-primary: #d4af35;
+  --color-background-light: #f8f7f6;
+  --color-background-dark: #0D0D0D;
+  --color-emerald-dark: #0F3D2E;
+  --font-display: "Spline Sans", sans-serif;
+  --font-exo: "Exo 2", sans-serif;
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
