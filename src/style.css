@@ -6,27 +6,59 @@
   }
 }
 
-.glass-card {
+@theme {
+  --color-primary: #d4af35;
+  --color-background-light: #f8f7f6;
+  --color-background-dark: #0D0D0D;
+  --color-emerald-dark: #0F3D2E;
+  --font-display: "Spline Sans", sans-serif;
+  --font-exo: "Exo 2", sans-serif;
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+@utility glass-card {
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(212, 175, 53, 0.2);
 }
 
-.gold-gradient-text {
+@utility gold-gradient-text {
   background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.nav-link {
+@utility nav-link {
   position: relative;
   transition: color 0.3s ease;
 }
 
-.nav-link-active {
+@utility nav-link-active {
   color: var(--color-primary) !important;
 }
 
+@utility waveform-bar {
+  width: 3px;
+  background: #d4af35;
+  margin: 0 1px;
+  border-radius: 1px;
+}
+
+@utility mobile-nav-link {
+  @apply text-lg font-black uppercase tracking-widest py-4 border-b border-primary/10 w-full text-center transition-colors;
+}
+
+@utility admin-nav-item {
+  @apply w-full flex items-center gap-3 px-4 py-3 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition-all text-sm font-bold uppercase tracking-widest;
+}
+
+@utility admin-card {
+  @apply glass-card p-6 rounded-xl border border-[#d4af35]/10 hover:border-[#d4af35]/30 transition-all;
+}
+
+/* Static selectors that cannot use @utility */
 .nav-link::after {
   content: '';
   position: absolute;
@@ -42,11 +74,12 @@
   width: 100%;
 }
 
-.waveform-bar {
-  width: 3px;
-  background: #d4af35;
-  margin: 0 1px;
-  border-radius: 1px;
+.admin-nav-item.active {
+  @apply bg-[#d4af35]/10 text-[#d4af35] border-r-2 border-[#d4af35];
+}
+
+.admin-nav-item .material-symbols-outlined {
+  @apply text-xl;
 }
 
 /* Mobile Menu Overlay */
@@ -68,20 +101,4 @@
 
 #mobile-menu.active {
   transform: translateX(0);
-}
-
-.mobile-nav-link {
-  @apply text-lg font-black uppercase tracking-widest py-4 border-b border-primary/10 w-full text-center transition-colors;
-}
-
-@theme {
-  --color-primary: #d4af35;
-  --color-background-light: #f8f7f6;
-  --color-background-dark: #0D0D0D;
-  --color-emerald-dark: #0F3D2E;
-  --font-display: "Spline Sans", sans-serif;
-  --font-exo: "Exo 2", sans-serif;
-  --radius-default: 0.25rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
 }

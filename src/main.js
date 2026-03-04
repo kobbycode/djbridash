@@ -1,4 +1,6 @@
 import './style.css'
+import { db } from './firebase.js'
+import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore'
 
 document.querySelector('#app').innerHTML = `
 <!-- Navigation -->
@@ -135,48 +137,10 @@ document.querySelector('#app').innerHTML = `
 </div>
 </div>
 <!-- Playlist -->
-<div class="space-y-4">
-<div id="load-custom-mix" class="glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-primary/50 hover:border-r-primary transition-all cursor-pointer group bg-primary/5">
-<div class="size-16 rounded border border-dashed border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
-<span class="material-symbols-outlined text-3xl">add_circle</span>
-</div>
-<div>
-<p class="font-bold group-hover:text-primary transition-colors">Load Custom Mix</p>
-<p class="text-xs text-slate-500 uppercase tracking-widest">Select MP3 from device</p>
-</div>
-<span class="material-symbols-outlined ml-auto text-primary animate-pulse">file_upload</span>
-</div>
-
-<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Accra Night Vibes" data-subtitle="Amapiano • 45m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-<div class="size-16 rounded overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Dark aesthetic concert lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD"/>
-</div>
-<div>
-<p class="font-bold group-hover:text-primary transition-colors">Accra Night Vibes</p>
-<p class="text-xs text-slate-500 uppercase tracking-widest">Amapiano • 45m</p>
-</div>
-<span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
-</div>
-<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Penthouse Lounge" data-subtitle="Deep House • 1h 12m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
-<div class="size-16 rounded overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Elite party atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F"/>
-</div>
-<div>
-<p class="font-bold group-hover:text-primary transition-colors">Penthouse Lounge</p>
-<p class="text-xs text-slate-500 uppercase tracking-widest">Deep House • 1h 12m</p>
-</div>
-<span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
-</div>
-<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Private Yacht Set" data-subtitle="Tropical • 38m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
-<div class="size-16 rounded overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Crowd at luxury event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr"/>
-</div>
-<div>
-<p class="font-bold group-hover:text-primary transition-colors">Private Yacht Set</p>
-<p class="text-xs text-slate-500 uppercase tracking-widest">Tropical • 38m</p>
-</div>
-<span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
-</div>
+<div class="space-y-4" id="playlist-container">
+    <div class="glass-card p-4 rounded-lg flex items-center justify-center border-r-4 border-r-primary/20 animate-pulse">
+        <p class="text-[10px] uppercase tracking-widest text-primary/50">Synchronizing with Cloud Vault...</p>
+    </div>
 </div>
 </div>
 </div>
@@ -228,62 +192,15 @@ document.querySelector('#app').innerHTML = `
 
 <!-- Gallery Section -->
 <section class="py-32 px-6 lg:px-12 bg-background-dark" id="gallery">
-<div class="max-w-7xl mx-auto">
-<div class="mb-16 text-center">
+<div class="max-w-7xl mx-auto text-center">
+<div class="mb-16">
 <h2 class="text-primary text-sm font-bold tracking-[0.4em] uppercase mb-4">Elite Moments</h2>
 <h3 class="text-4xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Gallery</h3>
 </div>
-
-<div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-<!-- Studio Session (Retained) -->
-<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-<img src="/about.jpg" alt="DJ BRIDASH Studio" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Studio Session</p>
-<p class="text-white text-lg font-bold">Global Rhythm</p>
-</div>
-</div>
-
-<!-- New Assets -->
-<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-<img src="/gallery-pink-headphones.jpg" alt="DJ BRIDASH with Headphones" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Elite Performance</p>
-<p class="text-white text-lg font-bold">Vibrant Beats</p>
-</div>
-</div>
-
-<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-<img src="/gallery-orange-serato.jpg" alt="DJ BRIDASH at the Deck" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Master Class</p>
-<p class="text-white text-lg font-bold">The Mixmaster</p>
-</div>
-</div>
-
-<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-<img src="/gallery-pink-vinyl.jpg" alt="DJ BRIDASH with Vinyl" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Authentic Sound</p>
-<p class="text-white text-lg font-bold">Analog Soul</p>
-</div>
-</div>
-
-<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-<img src="/gallery-orange-portrait.jpg" alt="DJ BRIDASH Portrait" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Sonic Energy</p>
-<p class="text-white text-lg font-bold">The Aura</p>
-</div>
-</div>
-
-<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-<img src="/gallery-orange-shirt.jpg" alt="DJ BRIDASH Professional Pose" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Professional Excellence</p>
-<p class="text-white text-lg font-bold">The Maestro</p>
-</div>
-</div>
+<div id="gallery-container" class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 min-h-[400px]">
+    <div class="animate-pulse flex items-center justify-center p-20 glass-card rounded-xl w-full">
+        <p class="text-primary/30 font-bold uppercase tracking-widest text-xs">Developing High-Res Assets...</p>
+    </div>
 </div>
 </div>
 </section>
@@ -340,49 +257,10 @@ document.querySelector('#app').innerHTML = `
 <div>
 <h3 class="text-primary font-bold uppercase tracking-[0.3em] mb-4">World Tour</h3>
 <h2 class="text-5xl font-bold mb-12">Upcoming Residencies</h2>
-<div class="space-y-6">
-<div class="glass-card p-6 rounded-xl flex items-center group hover:bg-primary/5 transition-colors">
-<div class="text-center pr-8 border-r border-primary/20">
-<p class="text-2xl font-bold text-primary">24</p>
-<p class="text-xs uppercase font-black">AUG</p>
-</div>
-<div class="px-8 flex-1">
-<h4 class="text-xl font-bold">Sky Bar Gold Edition</h4>
-<p class="text-slate-500 text-sm">Monte Carlo, Monaco</p>
-</div>
-<div class="hidden sm:block text-right">
-<div class="px-3 py-1 rounded bg-primary/10 border border-primary/30 text-[10px] text-primary font-black uppercase mb-2">Final 10 Tickets</div>
-<p class="text-xs text-slate-400">Sold Out Soon</p>
-</div>
-</div>
-<div class="glass-card p-6 rounded-xl flex items-center group hover:bg-primary/5 transition-colors">
-<div class="text-center pr-8 border-r border-primary/20">
-<p class="text-2xl font-bold text-primary">02</p>
-<p class="text-xs uppercase font-black">SEP</p>
-</div>
-<div class="px-8 flex-1">
-<h4 class="text-xl font-bold">Midnight in Lagos</h4>
-<p class="text-slate-500 text-sm">Lagos, Nigeria</p>
-</div>
-<div class="hidden sm:block text-right">
-<div class="px-3 py-1 rounded bg-emerald-dark/40 border border-emerald-400/30 text-[10px] text-emerald-400 font-black uppercase mb-2">Exclusive RSVP</div>
-<p class="text-xs text-slate-400">Guestlist Only</p>
-</div>
-</div>
-<div class="glass-card p-6 rounded-xl flex items-center group hover:bg-primary/5 transition-colors">
-<div class="text-center pr-8 border-r border-primary/20">
-<p class="text-2xl font-bold text-primary">15</p>
-<p class="text-xs uppercase font-black">SEP</p>
-</div>
-<div class="px-8 flex-1">
-<h4 class="text-xl font-bold">Vogue After Party</h4>
-<p class="text-slate-500 text-sm">Paris, France</p>
-</div>
-<div class="hidden sm:block text-right">
-<div class="px-3 py-1 rounded bg-primary/10 border border-primary/30 text-[10px] text-primary font-black uppercase mb-2">Private Event</div>
-<p class="text-xs text-slate-400">Invitation Only</p>
-</div>
-</div>
+<div class="space-y-6" id="events-container">
+    <div class="animate-pulse glass-card p-6 rounded-xl border border-primary/20">
+        <p class="text-[10px] uppercase tracking-widest text-primary/40">Fetching Global Schedule...</p>
+    </div>
 </div>
 </div>
 <div class="glass-card p-10 rounded-2xl border-2 border-primary/20 relative" id="contact">
@@ -622,29 +500,7 @@ if (globalAudio) {
   globalAudio.addEventListener('ended', () => togglePlay(false));
 }
 
-playlistItems.forEach((item, index) => {
-  item.addEventListener('click', () => {
-    const title = item.dataset.title;
-    const subtitle = item.dataset.subtitle;
-    const img = item.dataset.img;
-    const src = item.dataset.src;
-
-    if (mainTrackTitle) mainTrackTitle.textContent = title;
-    if (mainTrackSubtitle) mainTrackSubtitle.textContent = subtitle;
-    if (mainTrackImg) mainTrackImg.src = img;
-    if (globalAudio) {
-      globalAudio.src = src;
-      globalAudio.load();
-    }
-
-    playlistItems.forEach(i => i.classList.remove('border-r-primary'));
-    if (loadCustomBtn) loadCustomBtn.classList.remove('border-r-primary');
-    item.classList.add('border-r-primary');
-
-    currentTrackIndex = index;
-    togglePlay(true);
-  });
-});
+// Initial listeners for static elements omitted as they are now handled dynamically
 
 // Audio Picker Logic
 if (loadCustomBtn && audioPicker) {
@@ -673,31 +529,7 @@ if (loadCustomBtn && audioPicker) {
   });
 }
 
-// Inquiry Form Logic
-const inquiryForm = document.getElementById('inquiry-form');
-const inquirySubmit = document.getElementById('inquiry-submit');
-const inquirySuccess = document.getElementById('inquiry-success');
-
-if (inquiryForm) {
-  inquiryForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // UI Feedback: Loading
-    const btnText = inquirySubmit?.querySelector('.btn-text');
-    if (btnText) btnText.textContent = 'Processing Elite Access...';
-    if (inquirySubmit) inquirySubmit.disabled = true;
-
-    // Simulate API Call
-    setTimeout(() => {
-      if (inquirySuccess) {
-        inquirySuccess.classList.remove('hidden');
-        inquiryForm.reset();
-      }
-      if (btnText) btnText.textContent = 'Submit Inquiry';
-      if (inquirySubmit) inquirySubmit.disabled = false;
-    }, 1500);
-  });
-}
+// Inquiry Form Logic handled by Firestore sync at the bottom
 
 // Coming Soon Notifications for Dead Links
 const deadLinks = document.querySelectorAll('a[href="#"]:not([id^="hero-"]):not([id^="main-"])');
@@ -721,3 +553,157 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 500);
   }, 3000);
 }
+
+// Dynamic Content Loaders
+const loadMixes = async () => {
+  const container = document.getElementById('playlist-container');
+  const q = query(collection(db, "mixes"), orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    container.innerHTML = `
+            <div class="glass-card p-12 rounded-xl text-center border border-primary/20">
+                <p class="text-primary font-bold uppercase tracking-widest text-xs">Awaiting Master Mixes...</p>
+            </div>
+        `;
+    return;
+  }
+
+  container.innerHTML = querySnapshot.docs.map(docSnap => {
+    const mix = docSnap.data();
+    return `
+            <div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" 
+                data-title="${mix.title}" 
+                data-subtitle="${mix.subtitle}" 
+                data-img="${mix.imgUrl}" 
+                data-src="${mix.audioUrl}">
+                <div class="size-16 rounded overflow-hidden shadow-lg border border-white/10">
+                    <img class="w-full h-full object-cover" src="${mix.imgUrl}"/>
+                </div>
+                <div>
+                    <p class="font-bold group-hover:text-primary transition-colors uppercase text-sm tracking-tight">${mix.title}</p>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">${mix.subtitle}</p>
+                </div>
+                <span class="material-symbols-outlined ml-auto text-slate-600 group-hover:text-primary transition-colors">play_circle</span>
+            </div>
+        `;
+  }).join('');
+
+  // Re-attach play listeners (or use delegation)
+  const items = container.querySelectorAll('.playlist-item');
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const title = item.dataset.title;
+      const subtitle = item.dataset.subtitle;
+      const img = item.dataset.img;
+      const src = item.dataset.src;
+
+      if (mainTrackTitle) mainTrackTitle.textContent = title;
+      if (mainTrackSubtitle) mainTrackSubtitle.textContent = subtitle;
+      if (mainTrackImg) mainTrackImg.src = img;
+      if (globalAudio) {
+        globalAudio.src = src;
+        togglePlay(true);
+      }
+    });
+  });
+};
+
+const loadGallery = async () => {
+  const container = document.getElementById('gallery-container');
+  const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    // Fallback or empty state
+    container.innerHTML = `<p class="col-span-full text-slate-500 uppercase tracking-widest font-black text-xs py-20 text-center">Curating Visuals...</p>`;
+    return;
+  }
+
+  container.innerHTML = querySnapshot.docs.map(docSnap => {
+    const photo = docSnap.data();
+    return `
+            <div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
+                <img src="${photo.imgUrl}" alt="${photo.title}" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+                    <p class="text-primary font-bold tracking-widest text-[10px] uppercase mb-1">${photo.subtitle}</p>
+                    <p class="text-white text-lg font-bold">${photo.title}</p>
+                </div>
+            </div>
+        `;
+  }).join('');
+};
+
+const loadEvents = async () => {
+  const container = document.getElementById('events-container');
+  const q = query(collection(db, "events"), orderBy("date", "asc"));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    container.innerHTML = `<p class="text-slate-500 uppercase tracking-widest text-xs py-10">Schedule pending release...</p>`;
+    return;
+  }
+
+  container.innerHTML = querySnapshot.docs.map(docSnap => {
+    const ev = docSnap.data();
+    const dateObj = new Date(ev.date);
+    const day = dateObj.getDate();
+    const month = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
+
+    return `
+            <div class="glass-card p-6 rounded-xl flex items-center group hover:bg-primary/5 transition-colors">
+                <div class="text-center pr-8 border-r border-primary/20">
+                    <p class="text-2xl font-bold text-primary">${day}</p>
+                    <p class="text-xs uppercase font-black">${month}</p>
+                </div>
+                <div class="px-8 flex-1">
+                    <h4 class="text-xl font-bold uppercase tracking-tight">${ev.title}</h4>
+                    <p class="text-slate-500 text-xs uppercase tracking-widest">${ev.location}</p>
+                </div>
+                <div class="hidden sm:block text-right">
+                    <div class="px-3 py-1 rounded ${ev.tagType === 'soldout' ? 'bg-red-500/10 border-red-500/30 text-red-400' : 'bg-primary/10 border-primary/30 text-primary'} border text-[10px] font-black uppercase mb-2">
+                        ${ev.tag}
+                    </div>
+                </div>
+            </div>
+        `;
+  }).join('');
+};
+
+// Inquiry Portal Handling
+const inquiryForm = document.getElementById('inquiry-form');
+if (inquiryForm) {
+  inquiryForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('inquiry-submit');
+    const originalText = btn.innerHTML;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="animate-pulse">Logging Transmission...</span>';
+
+    try {
+      await addDoc(collection(db, "inquiries"), {
+        name: document.getElementById('inquiry-name').value,
+        email: document.getElementById('inquiry-email').value,
+        event: document.getElementById('inquiry-event').value,
+        location: document.getElementById('inquiry-location').value,
+        message: document.getElementById('inquiry-message').value,
+        timestamp: serverTimestamp()
+      });
+
+      document.getElementById('inquiry-success').classList.remove('hidden');
+      inquiryForm.reset();
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert("Security transmission failed. Please try again.");
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = originalText;
+    }
+  });
+}
+
+// Initialize Dynamic Loaders
+loadMixes();
+loadGallery();
+loadEvents();
