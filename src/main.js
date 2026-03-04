@@ -14,7 +14,7 @@ document.querySelector('#app').innerHTML = `
 <a class="nav-link text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#gallery">Gallery</a>
 <a class="nav-link text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#events">Events</a>
 <a class="nav-link text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#about">Bio</a>
-<a class="px-6 py-2.5 bg-primary text-background-dark text-sm font-bold rounded hover:bg-primary/90 transition-all uppercase tracking-widest" href="#contact">Book Now</a>
+<a class="nav-link px-6 py-2.5 bg-primary text-background-dark text-sm font-bold rounded hover:bg-primary/90 transition-all uppercase tracking-widest" href="#contact">Book Now</a>
 </div>
 <button class="md:hidden text-primary" id="mobile-menu-btn">
 <span class="material-symbols-outlined">menu</span>
@@ -29,12 +29,12 @@ document.querySelector('#app').innerHTML = `
 <span class="material-symbols-outlined text-3xl">close</span>
 </button>
 <div class="flex flex-col gap-2">
-<a class="mobile-nav-link text-white" href="#music">Music</a>
-<a class="mobile-nav-link text-white" href="#videos">Videos</a>
-<a class="mobile-nav-link text-white" href="#gallery">Gallery</a>
-<a class="mobile-nav-link text-white" href="#events">Events</a>
-<a class="mobile-nav-link text-white" href="#about">Bio</a>
-<a class="mobile-nav-link text-primary" href="#contact">Book Now</a>
+<a class="nav-link mobile-nav-link text-white" href="#music">Music</a>
+<a class="nav-link mobile-nav-link text-white" href="#videos">Videos</a>
+<a class="nav-link mobile-nav-link text-white" href="#gallery">Gallery</a>
+<a class="nav-link mobile-nav-link text-white" href="#events">Events</a>
+<a class="nav-link mobile-nav-link text-white" href="#about">Bio</a>
+<a class="nav-link mobile-nav-link text-primary" href="#contact">Book Now</a>
 </div>
 <div class="mt-auto pb-12 text-center">
 <div class="flex gap-6 justify-center mb-8">
@@ -68,12 +68,12 @@ document.querySelector('#app').innerHTML = `
     THE PLATINUM FINGERS
 </h1>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-<button id="hero-book-btn" class="min-w-[220px] px-8 py-4 bg-primary text-background-dark font-bold text-base uppercase tracking-widest rounded transition-transform hover:scale-105">
+<a href="#contact" class="nav-link min-w-[220px] px-8 py-4 bg-primary text-background-dark font-bold text-base uppercase tracking-widest rounded transition-transform hover:scale-105 inline-block text-center">
                     Book DJ Bridash
-                </button>
-<button id="hero-listen-btn" class="min-w-[220px] px-8 py-4 glass-card text-white font-bold text-base uppercase tracking-widest rounded border border-white/20 hover:border-primary transition-all">
+                </a>
+<a href="#music" class="nav-link min-w-[220px] px-8 py-4 glass-card text-white font-bold text-base uppercase tracking-widest rounded border border-white/20 hover:border-primary transition-all inline-block text-center">
                     Listen to Mixes
-                </button>
+                </a>
 </div>
 </div>
 <div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce">
@@ -96,7 +96,7 @@ document.querySelector('#app').innerHTML = `
 <div class="lg:col-span-2 glass-card rounded-xl p-8 flex flex-col md:flex-row gap-8 items-center border-l-4 border-l-primary">
 <div class="relative group shrink-0">
 <img id="main-track-img" class="size-64 object-cover rounded shadow-2xl" data-alt="Abstract gold and black vinyl record cover art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dzzoTvFtYqX6XEa8b2I-dIxoVYEOGE6nWmJGK5gPer1IfOxXlFy9PJU-JyGrp8hM0ZL0T67W69p1Jecrvgvtw70QlGKqCP3LzjaYHv5fEHf3Opo_9Wq02aPQ-K-UtkI5QlwGCJ1NZ7D6kdBNMv-i5ni9PT9anGzLB9-z6Bk-XRbUuRT6RE29I7QA5lE_Fy3-v31RA-aefORP94fXYzBeSnID-UYcezLfpyhi5-lZI1bCXIWFVmBqV_T0PrDAH9ikuqDIpqLql6tX"/>
-<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" id="main-track-overlay">
 <span class="material-symbols-outlined text-white text-6xl">play_circle</span>
 </div>
 </div>
@@ -128,13 +128,26 @@ document.querySelector('#app').innerHTML = `
 <span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
 </button>
 <button id="main-next-btn" class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_next</span></button>
-<div id="main-track-time" class="ml-auto text-primary text-sm font-mono font-bold tracking-tighter">02:45 / 58:12</div>
+<div id="main-track-time" class="ml-auto text-primary text-sm font-mono font-bold tracking-tighter">00:00 / 00:00</div>
 </div>
+<audio id="global-audio" src="" class="hidden"></audio>
+<input type="file" id="audio-picker" class="hidden" accept="audio/*">
 </div>
 </div>
 <!-- Playlist -->
 <div class="space-y-4">
-<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Accra Night Vibes" data-subtitle="Amapiano • 45m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD">
+<div id="load-custom-mix" class="glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-primary/50 hover:border-r-primary transition-all cursor-pointer group bg-primary/5">
+<div class="size-16 rounded border border-dashed border-primary/40 flex items-center justify-center text-primary group-hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+</div>
+<div>
+<p class="font-bold group-hover:text-primary transition-colors">Load Custom Mix</p>
+<p class="text-xs text-slate-500 uppercase tracking-widest">Select MP3 from device</p>
+</div>
+<span class="material-symbols-outlined ml-auto text-primary animate-pulse">file_upload</span>
+</div>
+
+<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Accra Night Vibes" data-subtitle="Amapiano • 45m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
 <div class="size-16 rounded overflow-hidden">
 <img class="w-full h-full object-cover" data-alt="Dark aesthetic concert lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD"/>
 </div>
@@ -144,7 +157,7 @@ document.querySelector('#app').innerHTML = `
 </div>
 <span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
 </div>
-<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Penthouse Lounge" data-subtitle="Deep House • 1h 12m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F">
+<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Penthouse Lounge" data-subtitle="Deep House • 1h 12m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3">
 <div class="size-16 rounded overflow-hidden">
 <img class="w-full h-full object-cover" data-alt="Elite party atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F"/>
 </div>
@@ -154,7 +167,7 @@ document.querySelector('#app').innerHTML = `
 </div>
 <span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
 </div>
-<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Private Yacht Set" data-subtitle="Tropical • 38m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr">
+<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Private Yacht Set" data-subtitle="Tropical • 38m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr" data-src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3">
 <div class="size-16 rounded overflow-hidden">
 <img class="w-full h-full object-cover" data-alt="Crowd at luxury event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr"/>
 </div>
@@ -179,7 +192,7 @@ document.querySelector('#app').innerHTML = `
 
 <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
 <!-- Video Card 1 -->
-<a href="https://www.tiktok.com/@djbridash" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
+<a href="https://www.tiktok.com/@djbridash/video/7311140026343525637" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
 <div class="aspect-video relative overflow-hidden">
 <img src="/video_thumb_1.png" alt="DJ BRIDASH Performance Video" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
 <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/20 transition-all flex items-center justify-center">
@@ -195,7 +208,7 @@ document.querySelector('#app').innerHTML = `
 </a>
 
 <!-- Video Card 2 -->
-<a href="https://www.tiktok.com/@djbridash" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
+<a href="https://www.tiktok.com/@djbridash/video/7326789452311235846" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
 <div class="aspect-video relative overflow-hidden">
 <img src="/video_thumb_2.png" alt="DJ BRIDASH Gear Video" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
 <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/20 transition-all flex items-center justify-center">
@@ -550,14 +563,44 @@ const mainPlayIcon = mainPlayBtn?.querySelector('.material-symbols-outlined');
 const mainTrackTitle = document.getElementById('main-track-title');
 const mainTrackSubtitle = document.getElementById('main-track-subtitle');
 const mainTrackImg = document.getElementById('main-track-img');
+const mainTrackTime = document.getElementById('main-track-time');
+const mainTrackOverlay = document.getElementById('main-track-overlay');
 const waveformBars = document.querySelectorAll('.waveform-bar');
 const playlistItems = document.querySelectorAll('.playlist-item');
+const globalAudio = document.getElementById('global-audio');
+const audioPicker = document.getElementById('audio-picker');
+const loadCustomBtn = document.getElementById('load-custom-mix');
 
 let isPlaying = false;
 let currentTrackIndex = -1;
 
+const formatTime = (seconds) => {
+  if (isNaN(seconds)) return '00:00';
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+};
+
+const updateTimeDisplay = () => {
+  if (globalAudio && mainTrackTime) {
+    mainTrackTime.textContent = `${formatTime(globalAudio.currentTime)} / ${formatTime(globalAudio.duration)}`;
+  }
+};
+
 const togglePlay = (play) => {
-  isPlaying = play !== undefined ? play : !isPlaying;
+  if (!globalAudio) return;
+
+  if (play === true) {
+    globalAudio.play().catch(e => console.log('Playback error:', e));
+    isPlaying = true;
+  } else if (play === false) {
+    globalAudio.pause();
+    isPlaying = false;
+  } else {
+    isPlaying = !isPlaying;
+    isPlaying ? globalAudio.play() : globalAudio.pause();
+  }
+
   if (mainPlayIcon) {
     mainPlayIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
   }
@@ -570,23 +613,65 @@ if (mainPlayBtn) {
   mainPlayBtn.addEventListener('click', () => togglePlay());
 }
 
+if (mainTrackOverlay) {
+  mainTrackOverlay.addEventListener('click', () => togglePlay());
+}
+
+if (globalAudio) {
+  globalAudio.addEventListener('timeupdate', updateTimeDisplay);
+  globalAudio.addEventListener('ended', () => togglePlay(false));
+}
+
 playlistItems.forEach((item, index) => {
   item.addEventListener('click', () => {
     const title = item.dataset.title;
     const subtitle = item.dataset.subtitle;
     const img = item.dataset.img;
+    const src = item.dataset.src;
 
     if (mainTrackTitle) mainTrackTitle.textContent = title;
     if (mainTrackSubtitle) mainTrackSubtitle.textContent = subtitle;
     if (mainTrackImg) mainTrackImg.src = img;
+    if (globalAudio) {
+      globalAudio.src = src;
+      globalAudio.load();
+    }
 
     playlistItems.forEach(i => i.classList.remove('border-r-primary'));
+    if (loadCustomBtn) loadCustomBtn.classList.remove('border-r-primary');
     item.classList.add('border-r-primary');
 
     currentTrackIndex = index;
     togglePlay(true);
   });
 });
+
+// Audio Picker Logic
+if (loadCustomBtn && audioPicker) {
+  loadCustomBtn.addEventListener('click', () => {
+    audioPicker.click();
+  });
+
+  audioPicker.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const url = URL.createObjectURL(file);
+      if (mainTrackTitle) mainTrackTitle.textContent = file.name.replace(/\.[^/.]+$/, "");
+      if (mainTrackSubtitle) mainTrackSubtitle.textContent = 'Custom Device Mix';
+      if (mainTrackImg) mainTrackImg.src = '/logo-avatar.jpg';
+      if (globalAudio) {
+        globalAudio.src = url;
+        globalAudio.load();
+      }
+
+      playlistItems.forEach(i => i.classList.remove('border-r-primary'));
+      loadCustomBtn.classList.add('border-r-primary');
+
+      togglePlay(true);
+      showToast('Mastering your local mix for the elite stage...');
+    }
+  });
+}
 
 // Inquiry Form Logic
 const inquiryForm = document.getElementById('inquiry-form');
