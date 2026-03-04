@@ -51,7 +51,7 @@ document.querySelector('#app').innerHTML = `
 <div class="absolute inset-0 bg-emerald-dark/15 z-10"></div>
 <img class="w-full h-full object-cover" data-alt="Official portrait of DJ BRIDASH" src="/hero-portrait.jpg"/>
 </div>
-<div class="relative z-20 text-center px-6 max-w-4xl">
+<div class="relative z-20 text-center px-6 max-w-4xl translate-y-20 md:translate-y-32">
 <h2 class="text-primary text-sm md:text-lg font-bold tracking-[0.4em] uppercase mb-4 opacity-90 font-exo">International Standards</h2>
 <h1 class="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter gold-gradient-text font-exo uppercase">
     THE PLATINUM FINGERS
