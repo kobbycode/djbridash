@@ -95,46 +95,46 @@ document.querySelector('#app').innerHTML = `
 <!-- Main Player Card -->
 <div class="lg:col-span-2 glass-card rounded-xl p-8 flex flex-col md:flex-row gap-8 items-center border-l-4 border-l-primary">
 <div class="relative group shrink-0">
-<img class="size-64 object-cover rounded shadow-2xl" data-alt="Abstract gold and black vinyl record cover art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dzzoTvFtYqX6XEa8b2I-dIxoVYEOGE6nWmJGK5gPer1IfOxXlFy9PJU-JyGrp8hM0ZL0T67W69p1Jecrvgvtw70QlGKqCP3LzjaYHv5fEHf3Opo_9Wq02aPQ-K-UtkI5QlwGCJ1NZ7D6kdBNMv-i5ni9PT9anGzLB9-z6Bk-XRbUuRT6RE29I7QA5lE_Fy3-v31RA-aefORP94fXYzBeSnID-UYcezLfpyhi5-lZI1bCXIWFVmBqV_T0PrDAH9ikuqDIpqLql6tX"/>
+<img id="main-track-img" class="size-64 object-cover rounded shadow-2xl" data-alt="Abstract gold and black vinyl record cover art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dzzoTvFtYqX6XEa8b2I-dIxoVYEOGE6nWmJGK5gPer1IfOxXlFy9PJU-JyGrp8hM0ZL0T67W69p1Jecrvgvtw70QlGKqCP3LzjaYHv5fEHf3Opo_9Wq02aPQ-K-UtkI5QlwGCJ1NZ7D6kdBNMv-i5ni9PT9anGzLB9-z6Bk-XRbUuRT6RE29I7QA5lE_Fy3-v31RA-aefORP94fXYzBeSnID-UYcezLfpyhi5-lZI1bCXIWFVmBqV_T0PrDAH9ikuqDIpqLql6tX"/>
 <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
 <span class="material-symbols-outlined text-white text-6xl">play_circle</span>
 </div>
 </div>
 <div class="flex-1 w-full">
 <span class="text-primary text-xs font-black uppercase tracking-widest">Now Premiering</span>
-<h4 class="text-3xl font-bold mt-2 mb-1">Afro House Experience</h4>
-<p class="text-slate-400 mb-8 font-light italic">Live from Mykonos Summer Residency</p>
+<h4 id="main-track-title" class="text-3xl font-bold mt-2 mb-1">Afro House Experience</h4>
+<p id="main-track-subtitle" class="text-slate-400 mb-8 font-light italic">Live from Mykonos Summer Residency</p>
 <!-- Visualizer Simulator -->
-<div class="flex items-end h-16 gap-1 mb-6">
-<div class="waveform-bar h-[40%] animate-pulse"></div>
-<div class="waveform-bar h-[60%] animate-pulse" style="animation-delay: 0.1s"></div>
-<div class="waveform-bar h-[90%] animate-pulse" style="animation-delay: 0.2s"></div>
-<div class="waveform-bar h-[70%] animate-pulse" style="animation-delay: 0.3s"></div>
-<div class="waveform-bar h-[45%] animate-pulse" style="animation-delay: 0.4s"></div>
-<div class="waveform-bar h-[85%] animate-pulse" style="animation-delay: 0.5s"></div>
-<div class="waveform-bar h-[100%] animate-pulse" style="animation-delay: 0.6s"></div>
-<div class="waveform-bar h-[60%] animate-pulse" style="animation-delay: 0.7s"></div>
-<div class="waveform-bar h-[30%] animate-pulse" style="animation-delay: 0.8s"></div>
-<div class="waveform-bar h-[80%] animate-pulse" style="animation-delay: 0.9s"></div>
-<div class="waveform-bar h-[95%] animate-pulse" style="animation-delay: 1.0s"></div>
-<div class="waveform-bar h-[55%] animate-pulse" style="animation-delay: 1.1s"></div>
-<div class="waveform-bar h-[40%] animate-pulse" style="animation-delay: 1.2s"></div>
-<div class="waveform-bar h-[75%] animate-pulse" style="animation-delay: 1.3s"></div>
-<div class="waveform-bar h-[90%] animate-pulse" style="animation-delay: 1.4s"></div>
+<div id="waveform-container" class="flex items-end h-16 gap-1 mb-6">
+<div class="waveform-bar h-[40%]"></div>
+<div class="waveform-bar h-[60%]" style="animation-delay: 0.1s"></div>
+<div class="waveform-bar h-[90%]" style="animation-delay: 0.2s"></div>
+<div class="waveform-bar h-[70%]" style="animation-delay: 0.3s"></div>
+<div class="waveform-bar h-[45%]"></div>
+<div class="waveform-bar h-[85%]" style="animation-delay: 0.5s"></div>
+<div class="waveform-bar h-[100%]" style="animation-delay: 0.6s"></div>
+<div class="waveform-bar h-[60%]" style="animation-delay: 0.7s"></div>
+<div class="waveform-bar h-[30%]" style="animation-delay: 0.8s"></div>
+<div class="waveform-bar h-[80%]" style="animation-delay: 0.9s"></div>
+<div class="waveform-bar h-[95%]" style="animation-delay: 1.0s"></div>
+<div class="waveform-bar h-[55%]" style="animation-delay: 1.1s"></div>
+<div class="waveform-bar h-[40%]" style="animation-delay: 1.2s"></div>
+<div class="waveform-bar h-[75%]" style="animation-delay: 1.3s"></div>
+<div class="waveform-bar h-[90%]" style="animation-delay: 1.4s"></div>
 </div>
 <div class="flex items-center gap-8">
-<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_previous</span></button>
-<button class="size-16 rounded-full bg-primary flex items-center justify-center text-background-dark shadow-[0_0_20px_rgba(212,175,53,0.4)] transition-transform hover:scale-110">
+<button id="main-prev-btn" class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_previous</span></button>
+<button id="main-play-btn" class="size-16 rounded-full bg-primary flex items-center justify-center text-background-dark shadow-[0_0_20px_rgba(212,175,53,0.4)] transition-transform hover:scale-110">
 <span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
 </button>
-<button class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_next</span></button>
-<div class="ml-auto text-primary text-sm font-mono font-bold tracking-tighter">02:45 / 58:12</div>
+<button id="main-next-btn" class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_next</span></button>
+<div id="main-track-time" class="ml-auto text-primary text-sm font-mono font-bold tracking-tighter">02:45 / 58:12</div>
 </div>
 </div>
 </div>
 <!-- Playlist -->
 <div class="space-y-4">
-<div class="glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group">
+<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Accra Night Vibes" data-subtitle="Amapiano • 45m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD">
 <div class="size-16 rounded overflow-hidden">
 <img class="w-full h-full object-cover" data-alt="Dark aesthetic concert lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDI4RXZ7STh1VNeCfMQaGstRyMAaHMnem6-k2l-eiQ0t5RLQksmR6zUvzeXvV8aVvrYI4HJz0w6oaaU4KFdYUjs9PuvMGd2m0QQ1FhVvaEuYnvfV4luRab0ewXGnHFkEotmyARFX__u9HjPhlF99lxUGcO74VQsIBQRKxiwl7NoqERlSKs4IdEzfBy8rvP9j13Nqs20GT8-eU5un3kftFE_WgZTvUhS8Gq9d2s9NdnhogciCAFn5fjoGqGUAVjan3TwzvGnTPJy3moD"/>
 </div>
@@ -144,7 +144,7 @@ document.querySelector('#app').innerHTML = `
 </div>
 <span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
 </div>
-<div class="glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group">
+<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Penthouse Lounge" data-subtitle="Deep House • 1h 12m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F">
 <div class="size-16 rounded overflow-hidden">
 <img class="w-full h-full object-cover" data-alt="Elite party atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB53Ib78UvCN14POxmPApG2wt7XRD_6ggiaFhUd8eRkRJAsP-SX6Pgj9XjAAXDGxUkT-YvE5nDzfVb4UkR24FBjQUCWpcLDiaBdtlocSnr1L4mme_nVMdENH_GAwwdxFdSf-FLz1CS5BjMAPUM5OYUxngp4kWJki1nCvNnI2oE2wVsgTbrZR_KLt-uypO2dJ3cYvrlnHQ1cBhV5WovTY0M0ciGjhEfhWyoZhySCMFvucQ-jbpNrqRGfCyLmWMTcm1cTwSajpfpRnb0F"/>
 </div>
@@ -154,7 +154,7 @@ document.querySelector('#app').innerHTML = `
 </div>
 <span class="material-symbols-outlined ml-auto text-slate-600">more_vert</span>
 </div>
-<div class="glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group">
+<div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" data-title="Private Yacht Set" data-subtitle="Tropical • 38m" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr">
 <div class="size-16 rounded overflow-hidden">
 <img class="w-full h-full object-cover" data-alt="Crowd at luxury event" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCDsgzfamjBhonEUApPFapNxMsazWjkao8_ESwduuQbX2iy6b5LDfdUCxjOw-dSpkGCRod4_E4WUER3s7kggRdzlr3J9yFfUvDrFmsk1L6-J_p1Zt-xIst0gX9XHvsysB-ogcC437HTlz8OWX2PNYUu7j1SlQYXzntG8bnZN-0-5NedPl8klwwz5ybYGwcKKATCkJp6cuqQGr3DyeGm5KkpaMrcSj0JBEekoBZGQvSwsx60XWA1e8os-3z9M1V-YgZeV4XHoeu--qr"/>
 </div>
@@ -377,20 +377,20 @@ document.querySelector('#app').innerHTML = `
                         Inquiry Portal
                     </div>
 <h3 class="text-3xl font-bold mb-8">Reserve the Sound</h3>
-<form class="space-y-6">
+<form id="inquiry-form" class="space-y-6">
 <div class="grid grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Full Name</label>
-<input class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Johnathan Sterling" type="text"/>
+<input id="inquiry-name" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Johnathan Sterling" type="text" required/>
 </div>
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Email Address</label>
-<input class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="john@sterling.com" type="email"/>
+<input id="inquiry-email" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="john@sterling.com" type="email" required/>
 </div>
 </div>
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Event Type</label>
-<select class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white appearance-none">
+<select id="inquiry-event" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white appearance-none">
 <option>Private Yacht Party</option>
 <option>Corporate Gala</option>
 <option>Wedding / Milestone</option>
@@ -399,16 +399,23 @@ document.querySelector('#app').innerHTML = `
 </div>
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Date & Location</label>
-<input class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Dubai - Dec 2024" type="text"/>
+<input id="inquiry-location" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Dubai - Dec 2024" type="text"/>
 </div>
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Message</label>
-<textarea class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Tell us about your vision..." rows="4"></textarea>
+<textarea id="inquiry-message" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Tell us about your vision..." rows="4"></textarea>
 </div>
-<button class="w-full py-4 bg-primary text-background-dark font-black uppercase tracking-[0.2em] rounded-lg hover:shadow-[0_0_30px_rgba(212,175,53,0.3)] transition-all transform active:scale-[0.98]">
-                            Submit Inquiry
-                        </button>
+<button id="inquiry-submit" class="w-full py-4 bg-primary text-background-dark font-black uppercase tracking-[0.2em] rounded-lg hover:shadow-[0_0_30px_rgba(212,175,53,0.3)] transition-all transform active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+<span class="btn-text">Submit Inquiry</span>
+</button>
 </form>
+<!-- Success Message Overlay (Hidden by default) -->
+<div id="inquiry-success" class="hidden absolute inset-0 bg-background-dark/95 z-30 flex flex-col items-center justify-center text-center p-8 rounded-2xl animate-fade-in">
+<span class="material-symbols-outlined text-primary text-7xl mb-4">check_circle</span>
+<h4 class="text-2xl font-bold text-white mb-2">Inquiry Received</h4>
+<p class="text-slate-400 max-w-xs">Your request for an elite sonic experience has been logged. Our management team will touch base within 24 hours.</p>
+<button onclick="document.getElementById('inquiry-success').classList.add('hidden')" class="mt-8 text-primary text-sm font-bold uppercase tracking-widest border-b border-primary/30 hover:border-primary transition-all">New Inquiry</button>
+</div>
 </div>
 </div>
 </div>
@@ -537,18 +544,95 @@ const observerCallback = (entries) => {
 const observer = new IntersectionObserver(observerCallback, observerOptions);
 sections.forEach(section => observer.observe(section));
 
-// Hero Button Interactivity
-const heroBookBtn = document.getElementById('hero-book-btn');
-const heroListenBtn = document.getElementById('hero-listen-btn');
+// Music Player Functionality
+const mainPlayBtn = document.getElementById('main-play-btn');
+const mainPlayIcon = mainPlayBtn?.querySelector('.material-symbols-outlined');
+const mainTrackTitle = document.getElementById('main-track-title');
+const mainTrackSubtitle = document.getElementById('main-track-subtitle');
+const mainTrackImg = document.getElementById('main-track-img');
+const waveformBars = document.querySelectorAll('.waveform-bar');
+const playlistItems = document.querySelectorAll('.playlist-item');
 
-if (heroBookBtn) {
-  heroBookBtn.addEventListener('click', () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+let isPlaying = false;
+let currentTrackIndex = -1;
+
+const togglePlay = (play) => {
+  isPlaying = play !== undefined ? play : !isPlaying;
+  if (mainPlayIcon) {
+    mainPlayIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+  }
+  waveformBars.forEach(bar => {
+    bar.classList.toggle('animate-pulse', isPlaying);
+  });
+};
+
+if (mainPlayBtn) {
+  mainPlayBtn.addEventListener('click', () => togglePlay());
+}
+
+playlistItems.forEach((item, index) => {
+  item.addEventListener('click', () => {
+    const title = item.dataset.title;
+    const subtitle = item.dataset.subtitle;
+    const img = item.dataset.img;
+
+    if (mainTrackTitle) mainTrackTitle.textContent = title;
+    if (mainTrackSubtitle) mainTrackSubtitle.textContent = subtitle;
+    if (mainTrackImg) mainTrackImg.src = img;
+
+    playlistItems.forEach(i => i.classList.remove('border-r-primary'));
+    item.classList.add('border-r-primary');
+
+    currentTrackIndex = index;
+    togglePlay(true);
+  });
+});
+
+// Inquiry Form Logic
+const inquiryForm = document.getElementById('inquiry-form');
+const inquirySubmit = document.getElementById('inquiry-submit');
+const inquirySuccess = document.getElementById('inquiry-success');
+
+if (inquiryForm) {
+  inquiryForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    // UI Feedback: Loading
+    const btnText = inquirySubmit?.querySelector('.btn-text');
+    if (btnText) btnText.textContent = 'Processing Elite Access...';
+    if (inquirySubmit) inquirySubmit.disabled = true;
+
+    // Simulate API Call
+    setTimeout(() => {
+      if (inquirySuccess) {
+        inquirySuccess.classList.remove('hidden');
+        inquiryForm.reset();
+      }
+      if (btnText) btnText.textContent = 'Submit Inquiry';
+      if (inquirySubmit) inquirySubmit.disabled = false;
+    }, 1500);
   });
 }
 
-if (heroListenBtn) {
-  heroListenBtn.addEventListener('click', () => {
-    document.getElementById('music')?.scrollIntoView({ behavior: 'smooth' });
+// Coming Soon Notifications for Dead Links
+const deadLinks = document.querySelectorAll('a[href="#"]:not([id^="hero-"]):not([id^="main-"])');
+deadLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    if (link.getAttribute('href') === '#') {
+      e.preventDefault();
+      showToast('This section is currently being curated for the elite experience. Coming soon.');
+    }
   });
+});
+
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'fixed bottom-10 left-1/2 -translate-x-1/2 z-50 bg-primary text-background-dark px-6 py-3 rounded-full font-bold text-sm shadow-2xl animate-fade-in flex items-center gap-3';
+  toast.innerHTML = `<span class="material-symbols-outlined text-xl">info</span> ${message}`;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('animate-fade-out');
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
 }
