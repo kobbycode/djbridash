@@ -5,7 +5,7 @@ document.querySelector('#app').innerHTML = `
 <nav class="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
 <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
 <a href="#hero" class="flex items-center gap-4 group">
-<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
+<img src="/logo-avatar.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
 <span class="text-2xl font-black tracking-widest gold-gradient-text uppercase hidden sm:block">DJ BRIDASH</span>
 </a>
 <div class="hidden md:flex items-center gap-10">
@@ -47,18 +47,15 @@ document.querySelector('#app').innerHTML = `
 <!-- Hero Section -->
 <section class="relative h-screen flex items-center justify-center overflow-hidden" id="hero">
 <div class="absolute inset-0 z-0">
-<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/60 to-background-dark z-10"></div>
-<div class="absolute inset-0 bg-emerald-dark/20 z-10"></div>
-<img class="w-full h-full object-cover object-top" data-alt="Official portrait of DJ BRIDASH" src="https://www.graphic.com.gh/images/2026/January/31/Bridash.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/40 to-background-dark z-10"></div>
+<div class="absolute inset-0 bg-emerald-dark/15 z-10"></div>
+<img class="w-full h-full object-cover" data-alt="Official portrait of DJ BRIDASH" src="/hero-portrait.jpg"/>
 </div>
 <div class="relative z-20 text-center px-6 max-w-4xl">
 <h2 class="text-primary text-sm md:text-lg font-bold tracking-[0.4em] uppercase mb-4 opacity-90 font-exo">International Standards</h2>
 <h1 class="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter gold-gradient-text font-exo uppercase">
     THE PLATINUM FINGERS
 </h1>
-<p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
-                Experience the pinnacle of luxury entertainment. Tailored sonic experiences for private jets, yacht parties, and exclusive galas.
-            </p>
 <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
 <button id="hero-book-btn" class="min-w-[220px] px-8 py-4 bg-primary text-background-dark font-bold text-base uppercase tracking-widest rounded transition-transform hover:scale-105">
                     Book DJ Bridash
@@ -407,7 +404,7 @@ document.querySelector('#app').innerHTML = `
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
 <div class="text-center md:text-left">
 <a href="#hero" class="flex items-center gap-4 mb-6 justify-center md:justify-start group">
-<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
+<img src="/logo-avatar.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
 <span class="text-3xl font-black tracking-widest gold-gradient-text uppercase">DJ BRIDASH</span>
 </a>
 <p class="text-slate-500 max-w-sm mb-8">The undisputed leader in luxury sonic atmospheres. Creating memories that transcend the ordinary.</p>
