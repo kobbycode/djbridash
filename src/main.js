@@ -210,26 +210,54 @@ document.querySelector('#app').innerHTML = `
 <h3 class="text-4xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Gallery</h3>
 </div>
 
-<div class="columns-1 md:columns-2 gap-8 space-y-8">
-<div class="relative group rounded-xl overflow-hidden border border-white/10">
-<img src="/gallery_1.png" alt="Luxury Event Crowd" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Villa Party</p>
-<p class="text-white text-lg font-bold">Unforgettable Vibe</p>
-</div>
-</div>
-<div class="relative group rounded-xl overflow-hidden border border-white/10">
-<img src="/gallery_2.png" alt="DJ BRIDASH Professional Shot" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
-<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Professional Set</p>
-<p class="text-white text-lg font-bold">The Art of Sound</p>
-</div>
-</div>
-<div class="relative group rounded-xl overflow-hidden border border-white/10">
+<div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+<!-- Studio Session (Retained) -->
+<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
 <img src="/about.jpg" alt="DJ BRIDASH Studio" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
 <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
 <p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Studio Session</p>
 <p class="text-white text-lg font-bold">Global Rhythm</p>
+</div>
+</div>
+
+<!-- New Assets -->
+<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
+<img src="/gallery-pink-headphones.jpg" alt="DJ BRIDASH with Headphones" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Elite Performance</p>
+<p class="text-white text-lg font-bold">Vibrant Beats</p>
+</div>
+</div>
+
+<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
+<img src="/gallery-orange-serato.jpg" alt="DJ BRIDASH at the Deck" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Master Class</p>
+<p class="text-white text-lg font-bold">The Mixmaster</p>
+</div>
+</div>
+
+<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
+<img src="/gallery-pink-vinyl.jpg" alt="DJ BRIDASH with Vinyl" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Authentic Sound</p>
+<p class="text-white text-lg font-bold">Analog Soul</p>
+</div>
+</div>
+
+<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
+<img src="/gallery-orange-portrait.jpg" alt="DJ BRIDASH Portrait" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Sonic Energy</p>
+<p class="text-white text-lg font-bold">The Aura</p>
+</div>
+</div>
+
+<div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
+<img src="/gallery-orange-shirt.jpg" alt="DJ BRIDASH Professional Pose" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
+<p class="text-primary font-bold tracking-widest text-xs uppercase mb-1">Professional Excellence</p>
+<p class="text-white text-lg font-bold">The Maestro</p>
 </div>
 </div>
 </div>
@@ -276,30 +304,6 @@ document.querySelector('#app').innerHTML = `
 <div class="pt-6">
 <img class="h-16 opacity-50" data-alt="Stylized signature of DJ Bridash in gold" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAylZ3PGyxCq9w4RTEmiGbrsnL-WjLxJMkvm-OD21rCLojU3eBrXx5OfXBC0NxUEbdQecW2BbMCI4_fg4y_jGos0VyY7tiYokfa9WFY7a-44j_3qX3Uufyb8BD3ON66Lo2plXZ4PKPMZ1r7Tnuh_5TgNoT01I2bZRwA2EVNV8eh5JYYh0Z6goi2-ZD2EcuCNFMuzxegPR265-tQa5U2rZ6v5ZVsroJY0Auc4-Ralrpsh3Vl4PNoaQNwZZcFLOLA1pELQzIqqT-gy6gT"/>
 </div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- Gallery Masonry -->
-<section class="py-24 bg-background-dark/50">
-<div class="max-w-7xl mx-auto px-6 lg:px-12">
-<h2 class="text-center text-3xl font-bold mb-16 uppercase tracking-[0.5em]">Global Presence</h2>
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[250px]">
-<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden rounded-xl border-2 border-primary/20">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="High energy luxury club scene" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9qfCo_SjIOPlpw7B0Kjnrxt70xA4BfkTXMvZ4QhMwC0b9Aohzc1aVN89YB3lIA0oe_6u8PxZQYvKb61OueX3ZDHy94ri5pMfkvsoI0hlUwzTgi6E1nTn9PeNhoo8om_HtF2Y2qKM38oDHRogLva0K9VV169OiXooEz0wv7xB5iStarhB0_QvZuSWMvBDxbB1Wo5sJxya3jKkp5JfX-SPVBjBzxAtK1dLrA1dCxc2eMLUdFbIqvqbNN9-d_9hxbzrcNcGR4cta40Nl"/>
-<div class="absolute inset-0 bg-background-dark/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-<p class="text-primary font-bold uppercase tracking-widest">Ibiza Season '23</p>
-</div>
-</div>
-<div class="relative group overflow-hidden rounded-xl border-2 border-primary/10">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Private fashion show performance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0xaaaBhJ79p9USFM8DgWSMyNj3z7znJW-aUOZJP4WkBW24rszO5yLHF-V2aK3d39IBNe2tQ0Co6tefF-Q1mHws21wh-_Nb_-dDBBIoVfrrX9PWGZq0707WKOc_rEXDT_XsePDYk1qUo8CUh7ua0a-DkURLWFsq2iwHYDkQeve_4QWauHjeuumKI9bFLz67KD5GNp3V0TWnluYdb0NdwS1zf0ShbEwbLsY4kABqzLsHX7VeUX57x2axwXEsStAgwZEutz69Zlqj8YF"/>
-</div>
-<div class="relative group overflow-hidden rounded-xl border-2 border-primary/10">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Rooftop party in Dubai" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQmril1ll8vu0RU-_2VbL-WVrgRJ5rXXvBn48NmrOTQ8iCYK70JwFosEe_lBxVK5o5NM0TTgamJD0qMke25vpP9k8P4Txxk9vG08wY9X8Rkx457qwl_MhJcZih5YIOBLUtp2YP64e17v4TG0D2aWWkwlas4oP5e2HBW0qDGhIDe2NLhV-k-xsAB1Y6-IePK-ULac77SYJQfm24_jBtq4jevKZtqrdr-mjCFAfbHULYeXyb8xNqNSn5spsMJ4KeSNFFZuo9vUrFNUpO"/>
-</div>
-<div class="md:col-span-2 relative group overflow-hidden rounded-xl border-2 border-primary/10">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Backstage DJ gear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYlM6QpHmgnVik-Snh8d3AQYVHLPf3DvyNmK7i8BaYR8gjGGQ5rkVmKTySv6bT7NJG0ieFuz98mnELz5mjIDk0KgKoJ8GgTfJKvhbA1pwJIDb5Wwr78z0YmUlxryTh8qblwOTqARwJa3QaHKyxoYKwHyyfo9bF3OFOW0DzU7drnhBZm1lcYdaQWzd01RkDYGVSwoXm0Gnyq5BbQA-L1XsaJU4Lakpv-mwItU5TiashCYhVz7oYmkf06Wsy9nx0k8nA373r9wTkhZ3D"/>
 </div>
 </div>
 </div>
