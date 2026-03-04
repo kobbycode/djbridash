@@ -37,8 +37,19 @@ document.querySelector('#app').innerHTML = `
 <a class="mobile-nav-link text-primary" href="#contact">Book Now</a>
 </div>
 <div class="mt-auto pb-12 text-center">
+<div class="flex gap-6 justify-center mb-8">
+<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
+<i class="fa-brands fa-instagram text-lg"></i>
+</a>
+<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
+<i class="fa-brands fa-tiktok text-lg"></i>
+</a>
+<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
+<i class="fa-brands fa-soundcloud text-lg"></i>
+</a>
+</div>
 <a href="#hero" class="inline-block group">
-<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-16 w-auto mx-auto rounded shadow-lg border border-primary/20 mb-6 font-exo group-hover:border-primary/50 transition-all">
+<img src="/logo-avatar.jpg" alt="DJ BRIDASH Logo" class="h-16 w-auto mx-auto rounded shadow-lg border border-primary/20 mb-6 font-exo group-hover:border-primary/50 transition-all">
 <p class="text-[10px] uppercase tracking-[0.4em] text-slate-600 italic group-hover:text-primary/70 transition-colors">Global Sound. Elite Vibes.</p>
 </a>
 </div>
@@ -413,14 +424,14 @@ document.querySelector('#app').innerHTML = `
 </a>
 <p class="text-slate-500 max-w-sm mb-8">The undisputed leader in luxury sonic atmospheres. Creating memories that transcend the ordinary.</p>
 <div class="flex gap-6 justify-center md:justify-start">
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="#">
-<span class="material-symbols-outlined text-lg">public</span>
+<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
+<i class="fa-brands fa-instagram text-lg"></i>
 </a>
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="#">
-<span class="material-symbols-outlined text-lg">movie</span>
+<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
+<i class="fa-brands fa-tiktok text-lg"></i>
 </a>
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="#">
-<span class="material-symbols-outlined text-lg">headphones</span>
+<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
+<i class="fa-brands fa-soundcloud text-lg"></i>
 </a>
 </div>
 </div>
