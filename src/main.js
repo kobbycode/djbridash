@@ -4,10 +4,10 @@ document.querySelector('#app').innerHTML = `
 <!-- Navigation -->
 <nav class="fixed top-0 w-full z-50 bg-background-dark/80 backdrop-blur-md border-b border-primary/10">
 <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-<div class="flex items-center gap-4">
-<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20">
+<a href="#hero" class="flex items-center gap-4 group">
+<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
 <span class="text-2xl font-black tracking-widest gold-gradient-text uppercase hidden sm:block">DJ BRIDASH</span>
-</div>
+</a>
 <div class="hidden md:flex items-center gap-10">
 <a class="nav-link text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#music">Music</a>
 <a class="nav-link text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#videos">Videos</a>
@@ -37,13 +37,15 @@ document.querySelector('#app').innerHTML = `
 <a class="mobile-nav-link text-primary" href="#contact">Book Now</a>
 </div>
 <div class="mt-auto pb-12 text-center">
-<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-16 w-auto mx-auto rounded shadow-lg border border-primary/20 mb-6 font-exo">
-<p class="text-[10px] uppercase tracking-[0.4em] text-slate-600 italic">Global Sound. Elite Vibes.</p>
+<a href="#hero" class="inline-block group">
+<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-16 w-auto mx-auto rounded shadow-lg border border-primary/20 mb-6 font-exo group-hover:border-primary/50 transition-all">
+<p class="text-[10px] uppercase tracking-[0.4em] text-slate-600 italic group-hover:text-primary/70 transition-colors">Global Sound. Elite Vibes.</p>
+</a>
 </div>
 </div>
 
 <!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<section class="relative h-screen flex items-center justify-center overflow-hidden" id="hero">
 <div class="absolute inset-0 z-0">
 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/60 to-background-dark z-10"></div>
 <div class="absolute inset-0 bg-emerald-dark/20 z-10"></div>
@@ -51,9 +53,9 @@ document.querySelector('#app').innerHTML = `
 </div>
 <div class="relative z-20 text-center px-6 max-w-4xl">
 <h2 class="text-primary text-sm md:text-lg font-bold tracking-[0.4em] uppercase mb-4 opacity-90 font-exo">International Standards</h2>
-<h1 class="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter gold-gradient-text font-exo">
-                THE SOUND OF <br/> ELITE VIBES
-            </h1>
+<h1 class="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter gold-gradient-text font-exo uppercase">
+    THE PLATINUM FINGERS
+</h1>
 <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
                 Experience the pinnacle of luxury entertainment. Tailored sonic experiences for private jets, yacht parties, and exclusive galas.
             </p>
@@ -247,8 +249,8 @@ document.querySelector('#app').innerHTML = `
 <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Portrait of a sophisticated DJ in luxury attire" src="/about.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
 <div class="absolute bottom-8 left-8 right-8 p-6 glass-card border-primary/40">
-<p class="text-primary font-bold uppercase tracking-widest text-sm mb-2">Based in Dubai & London</p>
-<h4 class="text-2xl font-bold">Reshaping Elite Nightlife</h4>
+<p class="text-primary font-bold uppercase tracking-widest text-sm mb-2">Based in Accra, Ghana</p>
+<h4 class="text-2xl font-bold">13+ Years of Sonic Mastery</h4>
 </div>
 </div>
 </div>
@@ -256,20 +258,22 @@ document.querySelector('#app').innerHTML = `
 <h3 class="text-primary font-bold uppercase tracking-[0.3em] mb-4">The Maestro</h3>
 <h2 class="text-5xl md:text-7xl font-black mb-10 gold-gradient-text">DJ BRIDASH</h2>
 <div class="space-y-6 text-lg text-slate-300 font-light leading-relaxed">
-<p>Born from the underground scenes of West Africa and polished in the world's most exclusive venues, DJ Bridash has defined a new era of luxury sonic curation.</p>
-<p>His signature blend of Afro-centric rhythms with European house precision has made him the preferred choice for royalty, tech moguls, and luxury brands across three continents.</p>
+<p><span class="text-primary font-bold">Bright Ewusi</span>, professionally known as <span class="text-white font-bold tracking-widest">DJ BRIDASH</span>, is a seasoned Ghanaian radio DJ, producer, and music promoter with over <span class="text-primary font-black italic">thirteen (13) years</span> of mastery in broadcasting and music entertainment.</p>
+<p>His consistency and creative energy have earned him a respected position within the <span class="text-white font-semibold">Multimedia Group</span>, where he currently contributes to major platforms including <span class="italic">Hitz 103.9 FM, Joy FM, Joy Prime TV, and Adom TV.</span></p>
+<p>Recognized for his dynamic on-air personality — energetic, witty, smooth, and bold — DJ BRIDASH seamlessly blends genres from <span class="text-primary/90 font-medium">Afrobeats and Highlife to Hip-life and Reggae</span>. Throughout his career, he has shared stages with icons like <span class="text-slate-200">Prince Bright (Buk Bak), E.L, Samini, Kwabena Kwabena, and Joe Mettle.</span></p>
+<p class="text-sm border-l-2 border-primary/30 pl-6 italic text-slate-400">"Serving as a cultural ambassador, DJ Bridash projects local sounds and talents to international audiences, bridging traditional and modern music experiences across the globe."</p>
 <div class="py-8 border-y border-primary/10 flex gap-12">
 <div>
-<p class="text-4xl font-bold text-primary mb-1">12+</p>
-<p class="text-xs uppercase tracking-widest font-semibold">Countries</p>
+<p class="text-4xl font-bold text-primary mb-1">13+</p>
+<p class="text-xs uppercase tracking-widest font-semibold">Years Exp.</p>
 </div>
 <div>
-<p class="text-4xl font-bold text-primary mb-1">500+</p>
-<p class="text-xs uppercase tracking-widest font-semibold">Private Sets</p>
+<p class="text-4xl font-bold text-primary mb-1">4+</p>
+<p class="text-xs uppercase tracking-widest font-semibold">Major Platforms</p>
 </div>
 <div>
-<p class="text-4xl font-bold text-primary mb-1">50M+</p>
-<p class="text-xs uppercase tracking-widest font-semibold">Streams</p>
+<p class="text-4xl font-bold text-primary mb-1">GH</p>
+<p class="text-xs uppercase tracking-widest font-semibold">Ambassador</p>
 </div>
 </div>
 <div class="pt-6">
@@ -402,10 +406,10 @@ document.querySelector('#app').innerHTML = `
 <footer class="bg-[#050505] py-20 px-6 lg:px-12 border-t border-primary/10">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
 <div class="text-center md:text-left">
-<div class="flex items-center gap-4 mb-6 justify-center md:justify-start">
-<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20">
+<a href="#hero" class="flex items-center gap-4 mb-6 justify-center md:justify-start group">
+<img src="/logo.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
 <span class="text-3xl font-black tracking-widest gold-gradient-text uppercase">DJ BRIDASH</span>
-</div>
+</a>
 <p class="text-slate-500 max-w-sm mb-8">The undisputed leader in luxury sonic atmospheres. Creating memories that transcend the ordinary.</p>
 <div class="flex gap-6 justify-center md:justify-start">
 <a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="#">
