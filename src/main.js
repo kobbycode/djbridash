@@ -28,11 +28,11 @@ document.querySelector('#app').innerHTML = `
 
 <!-- Mobile Menu Drawer -->
 <div id="mobile-menu-backdrop" class="fixed inset-0 bg-background-dark/95 backdrop-blur-xl z-[60]"></div>
-<div id="mobile-menu" class="fixed top-0 right-0 w-[85%] max-w-sm h-screen bg-background-dark z-[70] border-l border-primary/20 flex flex-col pt-24 px-8">
-<button id="close-mobile-menu" class="absolute top-6 right-6 size-12 rounded-full border border-primary/20 flex items-center justify-center text-primary active:bg-primary/10">
-<span class="material-symbols-outlined text-3xl">close</span>
+<div id="mobile-menu" class="fixed top-0 right-0 w-[85%] max-w-sm h-screen bg-background-dark z-[70] border-l border-primary/20 flex flex-col pt-20 px-6 overflow-y-auto">
+<button id="close-mobile-menu" class="absolute top-5 right-5 size-10 rounded-full border border-primary/20 flex items-center justify-center text-primary active:bg-primary/10">
+<span class="material-symbols-outlined text-2xl">close</span>
 </button>
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-1">
 <a class="nav-link mobile-nav-link text-white" href="#music">Music</a>
 <a class="nav-link mobile-nav-link text-white" href="#videos">Videos</a>
 <a class="nav-link mobile-nav-link text-white" href="#gallery">Gallery</a>
@@ -40,21 +40,21 @@ document.querySelector('#app').innerHTML = `
 <a class="nav-link mobile-nav-link text-white" href="#about">Bio</a>
 <a class="nav-link mobile-nav-link text-primary" href="#contact">Book Now</a>
 </div>
-<div class="mt-auto pb-12 text-center">
-<div class="flex gap-6 justify-center mb-8">
-<a id="nav-instagram" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
-<i class="fa-brands fa-instagram text-lg"></i>
+<div class="mt-auto pt-8 pb-8 text-center shrink-0">
+<div class="flex gap-4 justify-center mb-6">
+<a id="nav-instagram" class="size-8 md:size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
+<i class="fa-brands fa-instagram text-base"></i>
 </a>
-<a id="nav-tiktok" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
-<i class="fa-brands fa-tiktok text-lg"></i>
+<a id="nav-tiktok" class="size-8 md:size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
+<i class="fa-brands fa-tiktok text-base"></i>
 </a>
-<a id="nav-soundcloud" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
-<i class="fa-brands fa-soundcloud text-lg"></i>
+<a id="nav-soundcloud" class="size-8 md:size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
+<i class="fa-brands fa-soundcloud text-base"></i>
 </a>
 </div>
-<a href="#hero" class="inline-block group">
-<img src="/logo-avatar.jpg" alt="DJ BRIDASH Logo" class="h-16 w-auto mx-auto rounded shadow-lg border border-primary/20 mb-6 font-exo group-hover:border-primary/50 transition-all">
-<p class="text-[10px] uppercase tracking-[0.4em] text-slate-600 italic group-hover:text-primary/70 transition-colors">Global Sound. Elite Vibes.</p>
+<a href="#hero" class="inline-block group mx-auto text-center" id="mobile-logo-link">
+<img src="/logo-avatar.jpg" alt="DJ BRIDASH Logo" class="h-10 md:h-16 w-auto mx-auto rounded shadow-lg border border-primary/20 mb-4 font-exo group-hover:border-primary/50 transition-all">
+<p class="text-[8px] md:text-[10px] uppercase tracking-[0.3em] text-slate-600 italic group-hover:text-primary/70 transition-colors">Global Sound. Elite Vibes.</p>
 </a>
 </div>
 </div>
