@@ -48,7 +48,7 @@
 }
 
 @utility mobile-nav-link {
-  @apply text-lg font-black uppercase tracking-widest py-4 border-b border-primary/10 w-full text-center transition-colors;
+  @apply text-base font-black uppercase tracking-widest py-3 border-b border-primary/10 w-full text-center transition-colors;
 }
 
 @utility admin-nav-item {
