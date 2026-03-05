@@ -59,10 +59,13 @@ document.querySelector('#app').innerHTML = `
 
 <!-- Hero Section -->
 <section class="relative h-screen flex items-center justify-center overflow-hidden" id="hero">
-<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 z-0" id="hero-slider">
 <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/40 to-background-dark z-10"></div>
 <div class="absolute inset-0 bg-emerald-dark/15 z-10"></div>
-<img class="w-full h-full object-cover" data-alt="Official portrait of DJ BRIDASH" src="/hero-portrait.jpg"/>
+<!-- Slides will be injected here -->
+<div class="hero-slide active">
+    <img class="w-full h-full object-cover" data-alt="Official portrait of DJ BRIDASH" src="/hero-portrait.jpg"/>
+</div>
 </div>
 <div class="relative z-20 text-center px-6 max-w-4xl translate-y-20 md:translate-y-32">
 <h2 class="text-primary text-sm md:text-lg font-bold tracking-[0.4em] uppercase mb-4 opacity-90 font-exo">International Standards</h2>
@@ -248,6 +251,10 @@ document.querySelector('#app').innerHTML = `
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Email Address</label>
 <input id="inquiry-email" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="john@sterling.com" type="email" required/>
+</div>
+<div class="space-y-2">
+<label class="text-xs uppercase tracking-widest font-black text-slate-500">WhatsApp (With Country Code)</label>
+<input id="inquiry-whatsapp" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="+1, +44, +233..." type="tel"/>
 </div>
 </div>
 <div class="space-y-2">
@@ -656,6 +663,7 @@ if (inquiryForm) {
       await addDoc(collection(db, "inquiries"), {
         name: document.getElementById('inquiry-name').value,
         email: document.getElementById('inquiry-email').value,
+        whatsapp: document.getElementById('inquiry-whatsapp').value,
         event: document.getElementById('inquiry-event').value,
         location: document.getElementById('inquiry-location').value,
         message: document.getElementById('inquiry-message').value,
@@ -708,7 +716,49 @@ const loadVideos = async () => {
   }).join('');
 };
 
+const loadHero = async () => {
+  const slider = document.getElementById('hero-slider');
+  const q = query(collection(db, "hero_slides"), orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
+
+  const activeDocs = querySnapshot.docs.filter(doc => doc.data().active !== false);
+
+  if (activeDocs.length > 0) {
+    slider.innerHTML = `
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-dark/40 to-background-dark z-10"></div>
+            <div class="absolute inset-0 bg-emerald-dark/15 z-10"></div>
+            ${activeDocs.map((docSnap, index) => {
+      const slide = docSnap.data();
+      return `
+                    <div class="hero-slide ${index === 0 ? 'active' : ''}">
+                        <img class="w-full h-full object-cover" src="${slide.imgUrl}" alt="DJ BRIDASH Hero Slide"/>
+                    </div>
+                `;
+    }).join('')}
+        `;
+
+    if (activeDocs.length > 1) {
+      startHeroSlider();
+    }
+  }
+};
+
+let heroInterval;
+const startHeroSlider = () => {
+  if (heroInterval) clearInterval(heroInterval);
+
+  const slides = document.querySelectorAll('.hero-slide');
+  let currentSlide = 0;
+
+  heroInterval = setInterval(() => {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('active');
+  }, 5000);
+};
+
 // Initialize Dynamic Loaders
+loadHero();
 loadMixes();
 loadVideos();
 loadGallery();

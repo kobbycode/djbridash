@@ -36,5 +36,11 @@ service cloud.firestore {
       allow create: if true;
       allow read, update, delete: if isAuthenticated();
     }
+
+    // Hero Slides: Public read, Admin write
+    match /hero_slides/{slideId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
   }
 }
