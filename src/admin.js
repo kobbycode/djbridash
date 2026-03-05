@@ -675,6 +675,101 @@ window.deleteEvent = async (id) => {
 };
 
 // --- Inquiries Functions ---
+const renderEventTypesManager = async () => {
+    const container = document.getElementById('event-types-manager');
+    if (!container) return;
+
+    const docRef = doc(db, "settings", "booking_config");
+    let docSnap;
+    try {
+        docSnap = await getDoc(docRef);
+    } catch (e) {
+        console.error("Config fetch failed:", e);
+    }
+
+    // Initial data if missing
+    let types = ["Private Yacht Party", "Corporate Gala", "Wedding / Milestone", "Club Residency"];
+
+    if (docSnap && docSnap.exists()) {
+        types = docSnap.data().eventTypes || types;
+    } else {
+        // Create it once if not exists (or if fetch failed, this might error but we handle it)
+        try {
+            await setDoc(docRef, { eventTypes: types });
+        } catch (e) {
+            console.warn("Could not auto-init config:", e);
+        }
+    }
+
+    container.innerHTML = `
+        <div class="glass-card p-6 rounded-xl border border-primary/10 mb-10">
+            <div class="flex items-center gap-3 mb-6">
+                <span class="material-symbols-outlined text-primary">settings_applications</span>
+                <h3 class="text-sm font-black gold-gradient-text uppercase tracking-[0.2em]">Booking Configuration</h3>
+            </div>
+            
+            <div class="space-y-6">
+                <div>
+                    <label class="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-3 block">Manage Event Types</label>
+                    <div id="types-list" class="flex flex-wrap gap-2 mb-4">
+                        ${types.map(type => `
+                            <div class="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg group hover:border-red-500/30 transition-all">
+                                <span class="text-[10px] font-bold uppercase tracking-tight">${type}</span>
+                                <button onclick="window.removeEventType('${type}')" class="text-slate-600 group-hover:text-red-500 transition-colors">
+                                    <span class="material-symbols-outlined text-[16px]">close</span>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <form id="add-type-form" class="flex gap-2">
+                        <input id="new-type-input" type="text" placeholder="Add custom event type (e.g. Pool Side Party)" class="flex-1 bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary transition-colors text-white text-xs" required />
+                        <button type="submit" class="bg-primary text-background-dark px-6 py-2.5 rounded-lg font-black uppercase text-[10px] tracking-widest hover:scale-105 transition-all shadow-lg">Add Type</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-3 mb-6">
+            <span class="material-symbols-outlined text-primary">mail</span>
+            <h3 class="text-sm font-black gold-gradient-text uppercase tracking-[0.2em]">Live Inquiries</h3>
+        </div>
+    `;
+
+    document.getElementById('add-type-form').onsubmit = async (e) => {
+        e.preventDefault();
+        const input = document.getElementById('new-type-input');
+        const btn = e.target.querySelector('button');
+        const newType = input.value.trim();
+        if (!newType || types.includes(newType)) return;
+
+        btn.disabled = true;
+        btn.textContent = 'Adding...';
+
+        try {
+            const updatedTypes = [...types, newType];
+            await updateDoc(docRef, { eventTypes: updatedTypes });
+            renderEventTypesManager();
+        } catch (err) {
+            showAlert(getFriendlyError(err), 'error');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Add Type';
+        }
+    };
+
+    window.removeEventType = async (typeToRemove) => {
+        if (!await showConfirm(`Remove "${typeToRemove}" from the choice list?`)) return;
+        try {
+            const updatedTypes = types.filter(t => t !== typeToRemove);
+            await updateDoc(docRef, { eventTypes: updatedTypes });
+            renderEventTypesManager();
+        } catch (err) {
+            showAlert(getFriendlyError(err), 'error');
+        }
+    };
+};
+
 const renderInquiriesList = async () => {
     const list = document.getElementById('inquiries-list');
     const q = query(collection(db, "inquiries"), orderBy("timestamp", "desc"));
@@ -1418,9 +1513,10 @@ const renderTabContent = (tab) => {
 
         case 'inquiries':
             container.innerHTML = `
-                <div class="mb-8"></div>
+                <div id="event-types-manager"></div>
                 <div class="grid gap-6" id="inquiries-list"></div>
             `;
+            renderEventTypesManager();
             renderInquiriesList();
             break;
 

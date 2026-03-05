@@ -262,11 +262,12 @@ document.querySelector('#app').innerHTML = `
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Event Type</label>
 <select id="inquiry-event" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white appearance-none">
-<option>Private Yacht Party</option>
-<option>Corporate Gala</option>
-<option>Wedding / Milestone</option>
-<option>Club Residency</option>
+    <option disabled selected>Loading available experiences...</option>
 </select>
+</div>
+<div id="other-event-container" class="space-y-2 hidden animate-fade-in">
+    <label class="text-xs uppercase tracking-widest font-black text-slate-500">Custom Event Type</label>
+    <input id="inquiry-event-other" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Describe your elite vision..."/>
 </div>
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Date & Location</label>
@@ -683,7 +684,7 @@ if (inquiryForm) {
         name: document.getElementById('inquiry-name').value,
         email: document.getElementById('inquiry-email').value,
         whatsapp: iti ? iti.getNumber() : document.getElementById('inquiry-whatsapp').value,
-        event: document.getElementById('inquiry-event').value,
+        event: document.getElementById('inquiry-event').value === 'other' ? document.getElementById('inquiry-event-other').value : document.getElementById('inquiry-event').value,
         location: document.getElementById('inquiry-location').value,
         message: document.getElementById('inquiry-message').value,
         timestamp: serverTimestamp()
@@ -776,6 +777,40 @@ const startHeroSlider = () => {
   }, 5000);
 };
 
+const loadBookingConfig = async () => {
+  const eventSelect = document.getElementById('inquiry-event');
+  if (!eventSelect) return;
+
+  const docRef = doc(db, "settings", "booking_config");
+  let docSnap;
+  try {
+    docSnap = await getDoc(docRef);
+  } catch (e) {
+    console.warn("Config fetch failed:", e);
+  }
+
+  let types = ["Private Yacht Party", "Corporate Gala", "Wedding / Milestone", "Club Residency"];
+  if (docSnap && docSnap.exists()) {
+    types = docSnap.data().eventTypes || types;
+  }
+
+  eventSelect.innerHTML = types.map(type => `<option value="${type}">${type}</option>`).join('') +
+    `<option value="other">Other (Please Specify)</option>`;
+
+  eventSelect.addEventListener('change', (e) => {
+    const otherContainer = document.getElementById('other-event-container');
+    const otherInput = document.getElementById('inquiry-event-other');
+    if (e.target.value === 'other') {
+      otherContainer.classList.remove('hidden');
+      otherInput.required = true;
+      otherInput.focus();
+    } else {
+      otherContainer.classList.add('hidden');
+      otherInput.required = false;
+    }
+  });
+};
+
 const loadSocials = async () => {
   const docRef = doc(db, "settings", "socials");
   const docSnap = await getDoc(docRef);
@@ -801,4 +836,5 @@ if (db) {
   loadGallery();
   loadEvents();
   loadSocials();
+  loadBookingConfig();
 }
