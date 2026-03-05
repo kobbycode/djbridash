@@ -6,6 +6,7 @@
   }
 }
 
+
 @theme {
   --color-primary: #d4af35;
   --color-background-light: #f8f7f6;
@@ -55,7 +56,7 @@
 }
 
 @utility admin-card {
-  @apply glass-card p-6 rounded-xl border border-[#d4af35]/10 hover:border-[#d4af35]/30 transition-all;
+  @apply glass-card p-4 md:p-6 rounded-xl border border-[#d4af35]/10 hover:border-[#d4af35]/30 transition-all;
 }
 
 /* Static selectors that cannot use @utility */

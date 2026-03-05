@@ -157,12 +157,12 @@ const renderLogin = () => {
 
 const renderDashboard = (user) => {
     adminApp.innerHTML = `
-    <div class="min-h-screen flex flex-col lg:flex-row bg-[#080808]">
+    <div class="min-h-screen bg-[#080808] w-full">
         <!-- Mobile Header -->
-        <header class="lg:hidden h-16 bg-background-dark border-b border-primary/10 flex items-center justify-between px-6 sticky top-0 z-[60]">
+        <header class="lg:hidden h-16 w-full bg-background-dark border-b border-primary/10 flex items-center justify-between px-4 sticky top-0 z-[60]">
             <div class="flex items-center gap-3">
-                <img src="/logo-avatar.jpg" class="h-8 w-auto rounded" />
-                <span id="mobile-title" class="font-black text-xs tracking-tighter gold-gradient-text uppercase">Mix Library</span>
+                <img src="/logo-avatar.jpg" class="h-8 w-auto rounded shrink-0" />
+                <span id="mobile-title" class="font-black text-xs tracking-tighter gold-gradient-text uppercase truncate">Mix Library</span>
             </div>
             <button id="admin-menu-toggle" class="text-primary p-2 active:bg-primary/10 rounded-lg">
                 <span class="material-symbols-outlined text-3xl">menu</span>
@@ -173,61 +173,63 @@ const renderDashboard = (user) => {
         <div id="admin-sidebar-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[55] hidden lg:hidden"></div>
 
         <!-- Sidebar -->
-        <aside id="admin-sidebar" class="w-64 bg-background-dark border-r border-primary/10 flex flex-col p-6 fixed h-full z-[60] -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
-            <div class="hidden lg:flex items-center gap-4 mb-12">
+        <aside id="admin-sidebar" class="w-64 bg-background-dark border-r border-primary/10 flex flex-col p-6 fixed h-full z-[60] -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="hidden lg:flex items-center gap-4 mb-12 shrink-0">
                 <img src="/logo-avatar.jpg" class="h-10 w-auto rounded border border-primary/20" />
                 <span class="font-black text-sm tracking-tighter gold-gradient-text uppercase">Control Center</span>
             </div>
             
             <nav class="flex-1 space-y-2">
                 <button data-tab="mixes" class="admin-nav-item active">
-                    <span class="material-symbols-outlined">library_music</span> Mix Library
+                    <span class="material-symbols-outlined shrink-0">library_music</span> Mix
                 </button>
                 <button data-tab="videos" class="admin-nav-item">
-                    <span class="material-symbols-outlined">smart_display</span> Videos
+                    <span class="material-symbols-outlined shrink-0">smart_display</span> Videos
                 </button>
                 <button data-tab="gallery" class="admin-nav-item">
-                    <span class="material-symbols-outlined">photo_library</span> Gallery
+                    <span class="material-symbols-outlined shrink-0">photo_library</span> Gallery
                 </button>
                 <button data-tab="events" class="admin-nav-item">
-                    <span class="material-symbols-outlined">event</span> Tour Dates
+                    <span class="material-symbols-outlined shrink-0">event</span> Tour Dates
                 </button>
                 <button data-tab="inquiries" class="admin-nav-item">
-                    <span class="material-symbols-outlined">mail</span> Inquiries
+                    <span class="material-symbols-outlined shrink-0">mail</span> Inquiries
                 </button>
                 <button data-tab="hero" class="admin-nav-item">
-                    <span class="material-symbols-outlined">wallpaper</span> Hero Editor
+                    <span class="material-symbols-outlined shrink-0">wallpaper</span> Hero
                 </button>
                 <button data-tab="socials" class="admin-nav-item">
-                    <span class="material-symbols-outlined">share</span> Social Media
+                    <span class="material-symbols-outlined shrink-0">share</span> Socials
                 </button>
                 <button data-tab="profile" class="admin-nav-item">
-                    <span class="material-symbols-outlined">manage_accounts</span> Admin Profile
+                    <span class="material-symbols-outlined shrink-0">manage_accounts</span> Profile
                 </button>
             </nav>
 
-            <div class="pt-6 border-t border-primary/10">
+            <div class="pt-6 mt-6 border-t border-primary/10 shrink-0">
                 <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-4 truncate">Account: ${user.email}</p>
                 <button id="admin-logout" class="flex items-center gap-3 text-red-400 hover:text-red-300 transition-colors text-sm font-bold uppercase tracking-widest">
-                    <span class="material-symbols-outlined">logout</span> Sign Out
+                    <span class="material-symbols-outlined shrink-0">logout</span> Sign Out
                 </button>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="flex-1 lg:ml-64 p-6 md:p-12 min-h-screen">
-            <!-- Desktop Header -->
-            <header class="hidden lg:flex items-center justify-between mb-10 pb-6 border-b border-white/5">
-                <h1 id="desktop-title" class="text-2xl font-black uppercase gold-gradient-text tracking-tighter">Mix Library</h1>
-                <div class="flex items-center gap-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
-                    <span>Admin Panel</span>
-                    <span class="text-primary/20">/</span>
-                    <span id="breadcrumb-current" class="text-primary">Mixes</span>
-                </div>
-            </header>
+        <main class="w-full lg:pl-64 min-h-screen flex flex-col">
+            <div class="w-full max-w-[1600px] mx-auto p-4 pt-6 md:p-8 md:pt-8 lg:p-12 lg:pt-0 flex-1">
+                <!-- Desktop Header -->
+                <header class="hidden lg:flex items-center justify-between sticky top-[0px] bg-[#080808]/95 backdrop-blur-xl z-50 pt-12 pb-6 mb-10 border-b border-white/5">
+                    <h1 id="desktop-title" class="text-2xl font-black uppercase gold-gradient-text tracking-tighter">Mix Library</h1>
+                    <div class="flex items-center gap-4 text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">
+                        <span>Admin Panel</span>
+                        <span class="text-primary/20">/</span>
+                        <span id="breadcrumb-current" class="text-primary">Mixes</span>
+                    </div>
+                </header>
 
-            <div id="tab-content" class="max-w-5xl mx-auto">
-                <!-- Content will be injected here -->
+                <div id="tab-content" class="w-full">
+                    <!-- Content will be injected here -->
+                </div>
             </div>
         </main>
     </div>
@@ -783,52 +785,64 @@ const renderInquiriesList = async () => {
     list.innerHTML = querySnapshot.docs.map(docSnap => {
         const inq = docSnap.data();
         return `
-            <div class="admin-card space-y-4">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h4 class="font-black text-lg uppercase">${inq.name}</h4>
-                        <div class="flex flex-wrap gap-x-4 gap-y-1">
-                            <p class="text-primary text-xs font-bold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">mail</span>
-                                ${inq.email}
-                            </p>
-                            ${inq.whatsapp ? `
-                                <p class="text-emerald-400 text-xs font-bold flex items-center gap-1">
-                                    <i class="fa-brands fa-whatsapp text-[14px]"></i>
-                                    ${inq.whatsapp}
-                                </p>
-                            ` : ''}
-                        </div>
+            <div class="admin-card overflow-hidden relative">
+                <!-- Header: Name and Date -->
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4 border-b border-white/5 pb-4">
+                    <div class="min-w-0 flex-1">
+                        <h4 class="font-black text-lg uppercase truncate gold-gradient-text">${inq.name}</h4>
+                        <p class="text-[10px] text-slate-500 uppercase font-bold mt-1 shrink-0">${inq.timestamp?.toDate().toLocaleString()}</p>
                     </div>
-                    <p class="text-[10px] text-slate-600 uppercase font-bold">${inq.timestamp?.toDate().toLocaleString()}</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 py-3 border-y border-white/5">
-                    <div>
-                        <p class="text-[8px] text-slate-500 uppercase font-black mb-1">Target Event</p>
-                        <p class="text-xs uppercase font-bold truncate">${inq.event || 'GENERAL INQUIRY'}</p>
-                    </div>
-                    <div>
-                        <p class="text-[8px] text-slate-500 uppercase font-black mb-1">Location Profile</p>
-                        <p class="text-xs uppercase font-bold truncate">${inq.location || 'UNDISCLOSED'}</p>
-                    </div>
-                </div>
-                <div class="bg-white/5 p-4 rounded-lg">
-                    <p class="text-sm text-slate-300 italic">"${inq.message}"</p>
-                </div>
-                <div class="flex justify-between items-center gap-4">
-                    <button onclick="window.deleteInquiry('${docSnap.id}')" class="text-red-500/30 hover:text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-2 transition-colors">
-                        <span class="material-symbols-outlined text-sm">delete</span> Burn
-                    </button>
-                    <div class="flex gap-2">
-                        <a href="mailto:${inq.email}" class="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
-                            <span class="material-symbols-outlined text-sm">mail</span> Send Email
+                    
+                    <!-- Quick action buttons -->
+                    <div class="flex items-center gap-2 shrink-0 self-start">
+                        <a href="mailto:${inq.email}" class="h-8 w-8 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition-all text-white" aria-label="Email">
+                            <span class="material-symbols-outlined text-sm">mail</span>
                         </a>
                         ${inq.whatsapp ? `
-                            <a href="https://wa.me/${inq.whatsapp.replace(/\D/g, '')}" target="_blank" class="px-4 py-2 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-emerald-500/20 transition-all flex items-center gap-2">
-                                <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
-                            </a>
+                        <a href="https://wa.me/${inq.whatsapp.replace(/\D/g, '')}" target="_blank" class="h-8 w-8 flex items-center justify-center bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-full transition-all text-emerald-400" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </a>
                         ` : ''}
                     </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="flex flex-col gap-2 mb-4 text-xs font-bold text-slate-300">
+                    <a href="mailto:${inq.email}" class="flex items-center gap-2 hover:text-primary transition-colors truncate">
+                        <span class="material-symbols-outlined text-[14px] text-slate-500 shrink-0">mail</span>
+                        <span class="truncate">${inq.email}</span>
+                    </a>
+                    ${inq.whatsapp ? `
+                    <a href="https://wa.me/${inq.whatsapp.replace(/\D/g, '')}" target="_blank" class="flex items-center gap-2 hover:text-emerald-400 transition-colors truncate">
+                        <i class="fa-brands fa-whatsapp text-[14px] text-slate-500 shrink-0"></i>
+                        <span class="truncate">${inq.whatsapp}</span>
+                    </a>
+                    ` : ''}
+                </div>
+
+                <!-- Event Details Grid -->
+                <div class="grid grid-cols-2 gap-3 mb-4 bg-white/5 p-3 rounded-lg border border-white/5">
+                    <div class="min-w-0">
+                        <p class="text-[9px] text-slate-500 uppercase font-black mb-1">Target Event</p>
+                        <p class="text-xs uppercase font-bold text-white truncate">${inq.event || 'GENERAL INQUIRY'}</p>
+                    </div>
+                    <div class="min-w-0">
+                        <p class="text-[9px] text-slate-500 uppercase font-black mb-1">Location Profile</p>
+                        <p class="text-xs uppercase font-bold text-white truncate">${inq.location || 'UNDISCLOSED'}</p>
+                    </div>
+                </div>
+
+                <!-- Message Bubble -->
+                <div class="relative bg-background-dark/80 p-5 rounded-lg border border-primary/20 mb-4">
+                    <span class="material-symbols-outlined absolute -top-3 -left-2 text-primary text-xl bg-background-dark px-1">format_quote</span>
+                    <p class="text-xs sm:text-sm text-slate-300 italic leading-relaxed whitespace-pre-wrap break-words">"${inq.message}"</p>
+                </div>
+
+                <!-- Footer Actions -->
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="window.deleteInquiry('${docSnap.id}')" class="text-red-500/50 hover:text-red-500 text-[10px] font-black uppercase tracking-widest flex items-center gap-1 transition-colors bg-red-500/5 px-3 py-2 rounded-lg border border-red-500/10 hover:bg-red-500/10">
+                        <span class="material-symbols-outlined text-sm">delete</span> Burn Record
+                    </button>
                 </div>
             </div>
     `;
@@ -866,8 +880,8 @@ const renderTabContent = (tab) => {
     switch (tab) {
         case 'mixes':
             container.innerHTML = `
-                <div class="mb-8 flex justify-end">
-                    <button id="add-mix-btn" class="bg-primary text-background-dark font-black px-6 py-3 rounded-lg uppercase tracking-widest text-sm hover:scale-105 transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(212,175,53,0.3)]">
+                <div class="mb-6 flex flex-col sm:flex-row sm:justify-end">
+                    <button id="add-mix-btn" class="w-full sm:w-auto bg-primary text-background-dark font-black px-4 py-3 sm:px-6 rounded-lg uppercase tracking-widest text-xs sm:text-sm shadow-[0_0_20px_rgba(212,175,53,0.3)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined">add_circle</span> New Mix
                     </button>
                 </div>
@@ -1024,9 +1038,9 @@ const renderTabContent = (tab) => {
 
         case 'videos':
             container.innerHTML = `
-                <div class="mb-8 flex justify-end">
-                    <button id="add-video-btn" class="bg-primary text-background-dark font-black px-6 py-3 rounded-lg uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                        Add Video
+                <div class="mb-6 flex flex-col sm:flex-row sm:justify-end">
+                    <button id="add-video-btn" class="w-full sm:w-auto bg-primary text-background-dark font-black px-4 py-3 sm:px-6 rounded-lg uppercase tracking-widest text-xs sm:text-sm shadow-[0_0_20px_rgba(212,175,53,0.3)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">add_circle</span> Add Video
                     </button>
                 </div>
 
@@ -1145,9 +1159,9 @@ const renderTabContent = (tab) => {
 
         case 'gallery':
             container.innerHTML = `
-                <div class="mb-8 flex justify-end">
-                    <button id="add-photo-btn" class="bg-primary text-background-dark font-black px-6 py-3 rounded-lg uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                        Add Visual
+                <div class="mb-6 flex flex-col sm:flex-row sm:justify-end">
+                    <button id="add-photo-btn" class="w-full sm:w-auto bg-primary text-background-dark font-black px-4 py-3 sm:px-6 rounded-lg uppercase tracking-widest text-xs sm:text-sm shadow-[0_0_20px_rgba(212,175,53,0.3)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">add_circle</span> Add Visual
                     </button>
                 </div>
 
@@ -1250,9 +1264,9 @@ const renderTabContent = (tab) => {
 
         case 'events':
             container.innerHTML = `
-                <div class="mb-8 flex justify-end">
-                    <button id="add-event-btn" class="bg-primary text-background-dark font-black px-6 py-3 rounded-lg uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                        Add Date
+                <div class="mb-6 flex flex-col sm:flex-row sm:justify-end">
+                    <button id="add-event-btn" class="w-full sm:w-auto bg-primary text-background-dark font-black px-4 py-3 sm:px-6 rounded-lg uppercase tracking-widest text-xs sm:text-sm shadow-[0_0_20px_rgba(212,175,53,0.3)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">add_circle</span> Add Date
                     </button>
                 </div>
 
@@ -1331,9 +1345,9 @@ const renderTabContent = (tab) => {
 
         case 'hero':
             container.innerHTML = `
-                <div class="mb-8 flex justify-end">
-                    <button id="add-hero-btn" class="bg-primary text-background-dark font-black px-6 py-3 rounded-lg uppercase tracking-widest text-sm hover:scale-105 transition-all shadow-[0_0_20px_rgba(212,175,53,0.3)]">
-                        Add Slide
+                <div class="mb-6 flex flex-col sm:flex-row sm:justify-end">
+                    <button id="add-hero-btn" class="w-full sm:w-auto bg-primary text-background-dark font-black px-4 py-3 sm:px-6 rounded-lg uppercase tracking-widest text-xs sm:text-sm shadow-[0_0_20px_rgba(212,175,53,0.3)] hover:scale-[1.02] transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">add_circle</span> Add Slide
                     </button>
                 </div>
 

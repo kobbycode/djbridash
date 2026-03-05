@@ -74,11 +74,11 @@ document.querySelector('#app').innerHTML = `
 <h1 class="text-4xl sm:text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter gold-gradient-text font-exo uppercase">
     THE PLATINUM FINGERS
 </h1>
-<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-<a href="#contact" class="nav-link min-w-[220px] px-8 py-4 bg-primary text-background-dark font-bold text-base uppercase tracking-widest rounded transition-transform hover:scale-105 inline-block text-center">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6 w-full">
+<a href="#contact" class="nav-link w-full sm:w-auto min-w-[200px] md:min-w-[220px] px-6 py-3 md:px-8 md:py-4 bg-primary text-background-dark font-bold text-base uppercase tracking-widest rounded transition-transform hover:scale-105 inline-block text-center">
                     Book DJ Bridash
                 </a>
-<a href="#music" class="nav-link min-w-[220px] px-8 py-4 glass-card text-white font-bold text-base uppercase tracking-widest rounded border border-white/20 hover:border-primary transition-all inline-block text-center">
+<a href="#music" class="nav-link w-full sm:w-auto min-w-[200px] md:min-w-[220px] px-6 py-3 md:px-8 md:py-4 glass-card text-white font-bold text-base uppercase tracking-widest rounded border border-white/20 hover:border-primary transition-all inline-block text-center">
                     Listen to Mixes
                 </a>
 </div>
@@ -100,9 +100,9 @@ document.querySelector('#app').innerHTML = `
 </div>
 <div class="grid lg:grid-cols-3 gap-12">
 <!-- Main Player Card -->
-<div class="lg:col-span-2 glass-card rounded-xl p-8 flex flex-col md:flex-row gap-8 items-center border-l-4 border-l-primary">
+<div class="lg:col-span-2 glass-card rounded-xl p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center border-l-4 border-l-primary">
 <div class="relative group shrink-0">
-<img id="main-track-img" class="size-64 object-cover rounded shadow-2xl" data-alt="Abstract gold and black vinyl record cover art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dzzoTvFtYqX6XEa8b2I-dIxoVYEOGE6nWmJGK5gPer1IfOxXlFy9PJU-JyGrp8hM0ZL0T67W69p1Jecrvgvtw70QlGKqCP3LzjaYHv5fEHf3Opo_9Wq02aPQ-K-UtkI5QlwGCJ1NZ7D6kdBNMv-i5ni9PT9anGzLB9-z6Bk-XRbUuRT6RE29I7QA5lE_Fy3-v31RA-aefORP94fXYzBeSnID-UYcezLfpyhi5-lZI1bCXIWFVmBqV_T0PrDAH9ikuqDIpqLql6tX"/>
+<img id="main-track-img" class="size-48 md:size-64 object-cover rounded shadow-2xl" data-alt="Abstract gold and black vinyl record cover art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0dzzoTvFtYqX6XEa8b2I-dIxoVYEOGE6nWmJGK5gPer1IfOxXlFy9PJU-JyGrp8hM0ZL0T67W69p1Jecrvgvtw70QlGKqCP3LzjaYHv5fEHf3Opo_9Wq02aPQ-K-UtkI5QlwGCJ1NZ7D6kdBNMv-i5ni9PT9anGzLB9-z6Bk-XRbUuRT6RE29I7QA5lE_Fy3-v31RA-aefORP94fXYzBeSnID-UYcezLfpyhi5-lZI1bCXIWFVmBqV_T0PrDAH9ikuqDIpqLql6tX"/>
 <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer" id="main-track-overlay">
 <span class="material-symbols-outlined text-white text-6xl">play_circle</span>
 </div>
@@ -152,14 +152,14 @@ document.querySelector('#app').innerHTML = `
 </section>
 
 <!-- Videos Section -->
-<section class="py-32 px-6 lg:px-12 bg-[#080808] border-y border-primary/5" id="videos">
+<section class="py-20 md:py-32 px-6 lg:px-12 bg-[#080808] border-y border-primary/5" id="videos">
 <div class="max-w-7xl mx-auto">
 <div class="mb-16 text-center">
 <h2 class="text-primary text-sm font-bold tracking-[0.4em] uppercase mb-4">The Visual Experience</h2>
-<h3 class="text-4xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Videos</h3>
+<h3 class="text-3xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Videos</h3>
 </div>
 <div class="grid md:grid-cols-2 gap-8" id="videos-container">
-    <div class="animate-pulse glass-card p-12 rounded-xl border border-primary/20 text-center col-span-full">
+    <div class="animate-pulse glass-card p-8 md:p-12 rounded-xl border border-primary/20 text-center col-span-full">
         <p class="text-primary/30 font-bold uppercase tracking-widest text-xs">Cuing Visual Content...</p>
     </div>
 </div>
@@ -167,14 +167,14 @@ document.querySelector('#app').innerHTML = `
 </section>
 
 <!-- Gallery Section -->
-<section class="py-32 px-6 lg:px-12 bg-background-dark" id="gallery">
+<section class="py-20 md:py-32 px-6 lg:px-12 bg-background-dark" id="gallery">
 <div class="max-w-7xl mx-auto text-center">
 <div class="mb-16">
 <h2 class="text-primary text-sm font-bold tracking-[0.4em] uppercase mb-4">Elite Moments</h2>
-<h3 class="text-4xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Gallery</h3>
+<h3 class="text-3xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Gallery</h3>
 </div>
 <div id="gallery-container" class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8 min-h-[400px]">
-    <div class="animate-pulse flex items-center justify-center p-20 glass-card rounded-xl w-full">
+    <div class="animate-pulse flex items-center justify-center p-12 md:p-20 glass-card rounded-xl w-full">
         <p class="text-primary/30 font-bold uppercase tracking-widest text-xs">Developing High-Res Assets...</p>
     </div>
 </div>
@@ -182,12 +182,12 @@ document.querySelector('#app').innerHTML = `
 </section>
 
 <!-- About Section -->
-<section class="py-32 px-6 lg:px-12 bg-background-dark relative overflow-hidden" id="about">
+<section class="py-20 md:py-32 px-6 lg:px-12 bg-background-dark relative overflow-hidden" id="about">
 <div class="absolute top-0 right-0 size-[600px] bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
 <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
 <div class="relative">
 <div class="absolute -inset-4 border border-primary/20 rounded-lg -z-10 translate-x-4 translate-y-4"></div>
-<div class="relative rounded-lg overflow-hidden h-[700px] border-2 border-primary/30">
+<div class="relative rounded-lg overflow-hidden h-[400px] md:h-[700px] border-2 border-primary/30">
 <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Portrait of a sophisticated DJ in luxury attire" src="/about.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
 <div class="absolute bottom-8 left-8 right-8 p-6 glass-card border-primary/40">
@@ -204,7 +204,7 @@ document.querySelector('#app').innerHTML = `
 <p>His consistency and creative energy have earned him a respected position within the <span class="text-white font-semibold">Multimedia Group</span>, where he currently contributes to major platforms including <span class="italic">Hitz 103.9 FM, Joy FM, Joy Prime TV, and Adom TV.</span></p>
 <p>Recognized for his dynamic on-air personality — energetic, witty, smooth, and bold — DJ BRIDASH seamlessly blends genres from <span class="text-primary/90 font-medium">Afrobeats and Highlife to Hip-life and Reggae</span>. Throughout his career, he has shared stages with icons like <span class="text-slate-200">Prince Bright (Buk Bak), E.L, Samini, Kwabena Kwabena, and Joe Mettle.</span></p>
 <p class="text-sm border-l-2 border-primary/30 pl-6 italic text-slate-400">"Serving as a cultural ambassador, DJ Bridash projects local sounds and talents to international audiences, bridging traditional and modern music experiences across the globe."</p>
-<div class="py-8 border-y border-primary/10 flex gap-12">
+<div class="py-8 border-y border-primary/10 flex flex-wrap gap-6 md:gap-12 justify-around sm:justify-start">
 <div>
 <p class="text-4xl font-bold text-primary mb-1">13+</p>
 <p class="text-xs uppercase tracking-widest font-semibold">Years Exp.</p>
@@ -227,25 +227,25 @@ document.querySelector('#app').innerHTML = `
 </section>
 
 <!-- Events & Booking -->
-<section class="py-32 px-6 lg:px-12 bg-background-dark relative" id="events">
+<section class="py-20 md:py-32 px-6 lg:px-12 bg-background-dark relative" id="events">
 <div class="max-w-7xl mx-auto">
 <div class="grid lg:grid-cols-2 gap-20">
 <div>
 <h3 class="text-primary font-bold uppercase tracking-[0.3em] mb-4">World Tour</h3>
-<h2 class="text-5xl font-bold mb-12">Upcoming Residencies</h2>
+<h2 class="text-3xl md:text-5xl font-bold mb-8 md:mb-12">Upcoming Residencies</h2>
 <div class="space-y-6" id="events-container">
     <div class="animate-pulse glass-card p-6 rounded-xl border border-primary/20">
         <p class="text-[10px] uppercase tracking-widest text-primary/40">Fetching Global Schedule...</p>
     </div>
 </div>
 </div>
-<div class="glass-card p-10 rounded-2xl border-2 border-primary/20 relative" id="contact">
+<div class="glass-card p-6 md:p-10 rounded-2xl border-2 border-primary/20 relative" id="contact">
 <div class="absolute -top-6 left-10 bg-primary px-6 py-2 rounded text-background-dark font-black uppercase text-sm shadow-[0_0_15px_rgba(212,175,53,0.3)]">
                         Inquiry Portal
                     </div>
 <h3 class="text-3xl font-bold mb-8">Reserve the Sound</h3>
 <form id="inquiry-form" class="space-y-6">
-<div class="grid grid-cols-2 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="space-y-2">
 <label class="text-xs uppercase tracking-widest font-black text-slate-500">Full Name</label>
 <input id="inquiry-name" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="Johnathan Sterling" type="text" required/>
@@ -294,12 +294,12 @@ document.querySelector('#app').innerHTML = `
 </section>
 
 <!-- Footer -->
-<footer class="bg-[#050505] py-20 px-6 lg:px-12 border-t border-primary/10">
+<footer class="bg-[#050505] py-12 md:py-20 px-6 lg:px-12 border-t border-primary/10">
 <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
 <div class="text-center md:text-left">
 <a href="#hero" class="flex items-center gap-4 mb-6 justify-center md:justify-start group">
 <img src="/logo-avatar.jpg" alt="DJ BRIDASH Logo" class="h-12 w-auto rounded shadow-lg border border-primary/20 group-hover:border-primary/50 transition-all">
-<span class="text-3xl font-black tracking-widest gold-gradient-text uppercase">DJ BRIDASH</span>
+<span class="text-2xl md:text-3xl font-black tracking-widest gold-gradient-text uppercase">DJ BRIDASH</span>
 </a>
 <p class="text-slate-500 max-w-sm mb-8">The undisputed leader in luxury sonic atmospheres. Creating memories that transcend the ordinary.</p>
 <div class="flex gap-6 justify-center md:justify-start">
@@ -314,7 +314,7 @@ document.querySelector('#app').innerHTML = `
 </a>
 </div>
 </div>
-<div class="grid grid-cols-2 sm:grid-cols-3 gap-16">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-16">
 <div>
 <p class="font-bold uppercase tracking-widest text-xs mb-6 text-primary">Management</p>
 <ul class="space-y-4 text-sm text-slate-400">
@@ -543,7 +543,7 @@ const loadMixes = async () => {
 
   if (querySnapshot.empty) {
     container.innerHTML = `
-            <div class="glass-card p-12 rounded-xl text-center border border-primary/20">
+            <div class="glass-card p-8 md:p-12 rounded-xl text-center border border-primary/20">
                 <p class="text-primary font-bold uppercase tracking-widest text-xs">Awaiting Master Mixes...</p>
             </div>
         `;
