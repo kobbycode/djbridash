@@ -1,6 +1,6 @@
 import './style.css'
 import { db } from './firebase.js'
-import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore'
+import { collection, getDocs, query, orderBy, addDoc, serverTimestamp, getDoc, doc } from 'firebase/firestore'
 import intlTelInput from 'intl-tel-input';
 import 'intl-tel-input/build/css/intlTelInput.css';
 
@@ -42,13 +42,13 @@ document.querySelector('#app').innerHTML = `
 </div>
 <div class="mt-auto pb-12 text-center">
 <div class="flex gap-6 justify-center mb-8">
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
+<a id="nav-instagram" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
 <i class="fa-brands fa-instagram text-lg"></i>
 </a>
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
+<a id="nav-tiktok" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
 <i class="fa-brands fa-tiktok text-lg"></i>
 </a>
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
+<a id="nav-soundcloud" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary active:bg-primary active:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
 <i class="fa-brands fa-soundcloud text-lg"></i>
 </a>
 </div>
@@ -302,13 +302,13 @@ document.querySelector('#app').innerHTML = `
 </a>
 <p class="text-slate-500 max-w-sm mb-8">The undisputed leader in luxury sonic atmospheres. Creating memories that transcend the ordinary.</p>
 <div class="flex gap-6 justify-center md:justify-start">
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
+<a id="footer-instagram" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://instagram.com/djbridash" target="_blank">
 <i class="fa-brands fa-instagram text-lg"></i>
 </a>
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
+<a id="footer-tiktok" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://tiktok.com/@djbridash" target="_blank">
 <i class="fa-brands fa-tiktok text-lg"></i>
 </a>
-<a class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
+<a id="footer-soundcloud" class="size-10 rounded-full border border-primary/30 flex items-center justify-center text-primary hover:bg-primary hover:text-background-dark transition-all" href="https://soundcloud.com/djbridash" target="_blank">
 <i class="fa-brands fa-soundcloud text-lg"></i>
 </a>
 </div>
@@ -664,8 +664,9 @@ if (whatsappInput) {
         .then((data) => callback(data.country_code))
         .catch(() => callback("GH"));
     },
-    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    preferredCountries: ["gh", "ae", "us", "gb"]
+    loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@26.7.6/build/js/utils.js",
+    autoPlaceholder: "aggressive",
+    favouredCountries: ["gh", "ae", "us", "gb"]
   });
 }
 
@@ -776,6 +777,23 @@ const startHeroSlider = () => {
   }, 5000);
 };
 
+const loadSocials = async () => {
+  const docRef = doc(db, "settings", "socials");
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    const data = docSnap.data();
+    const platforms = ['instagram', 'tiktok', 'soundcloud'];
+    platforms.forEach(p => {
+      if (data[p]) {
+        const navEl = document.getElementById(`nav-${p}`);
+        const footerEl = document.getElementById(`footer-${p}`);
+        if (navEl) navEl.href = data[p];
+        if (footerEl) footerEl.href = data[p];
+      }
+    });
+  }
+};
+
 // Initialize Dynamic Content
 if (db) {
   loadHero();
@@ -783,4 +801,5 @@ if (db) {
   loadVideos();
   loadGallery();
   loadEvents();
+  loadSocials();
 }

@@ -1,7 +1,7 @@
 import './style.css'
 import { auth, db, storage } from './firebase.js'
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import { collection, addDoc, getDocs, query, orderBy, deleteDoc, updateDoc, getDoc, doc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc, getDocs, query, orderBy, deleteDoc, updateDoc, getDoc, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { ref, uploadBytes, uploadBytesResumable, getDownloadURL, deleteObject } from "firebase/storage";
 
 
@@ -197,6 +197,9 @@ const renderDashboard = (user) => {
                 </button>
                 <button data-tab="hero" class="admin-nav-item">
                     <span class="material-symbols-outlined">wallpaper</span> Hero Editor
+                </button>
+                <button data-tab="socials" class="admin-nav-item">
+                    <span class="material-symbols-outlined">share</span> Social Media
                 </button>
                 <button data-tab="profile" class="admin-nav-item">
                     <span class="material-symbols-outlined">manage_accounts</span> Admin Profile
@@ -750,6 +753,7 @@ const tabTitles = {
     'events': 'Tour Dates',
     'inquiries': 'Inquiries',
     'hero': 'Hero Editor',
+    'socials': 'Social Media',
     'profile': 'Admin Profile'
 };
 
@@ -1418,6 +1422,68 @@ const renderTabContent = (tab) => {
                 <div class="grid gap-6" id="inquiries-list"></div>
             `;
             renderInquiriesList();
+            break;
+
+        case 'socials':
+            container.innerHTML = `
+                <div class="glass-card p-8 rounded-xl border border-primary/20 max-w-2xl mx-auto mt-10">
+                    <h3 class="text-xl font-bold mb-6 gold-gradient-text uppercase">Manage Social Links</h3>
+                    <form id="social-links-form" class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase tracking-widest text-slate-500">Instagram URL</label>
+                            <input type="url" id="social-instagram" class="admin-input" placeholder="https://instagram.com/..." required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase tracking-widest text-slate-500">TikTok URL</label>
+                            <input type="url" id="social-tiktok" class="admin-input" placeholder="https://tiktok.com/@..." required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black uppercase tracking-widest text-slate-500">Soundcloud URL</label>
+                            <input type="url" id="social-soundcloud" class="admin-input" placeholder="https://soundcloud.com/..." required>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-primary text-background-dark font-black uppercase tracking-widest rounded-lg hover:shadow-[0_0_20px_rgba(212,175,53,0.3)] transition-all">
+                            Save Social Links
+                        </button>
+                    </form>
+                </div>
+            `;
+
+            // Fetch current socials
+            const fetchSocials = async () => {
+                const docRef = doc(db, "settings", "socials");
+                const docSnap = await getDoc(docRef);
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById('social-instagram').value = data.instagram || '';
+                    document.getElementById('social-tiktok').value = data.tiktok || '';
+                    document.getElementById('social-soundcloud').value = data.soundcloud || '';
+                }
+            };
+            fetchSocials();
+
+            document.getElementById('social-links-form').onsubmit = async (e) => {
+                e.preventDefault();
+                const btn = e.target.querySelector('button');
+                btn.disabled = true;
+                btn.textContent = 'Saving...';
+
+                try {
+                    const data = {
+                        instagram: document.getElementById('social-instagram').value,
+                        tiktok: document.getElementById('social-tiktok').value,
+                        soundcloud: document.getElementById('social-soundcloud').value,
+                        updatedAt: serverTimestamp()
+                    };
+                    await setDoc(doc(db, "settings", "socials"), data);
+                    await showAlert('Social links updated successfully!', 'success');
+                } catch (err) {
+                    console.error(err);
+                    await showAlert(getFriendlyError(err), 'error');
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'Save Social Links';
+                }
+            };
             break;
     }
 };
