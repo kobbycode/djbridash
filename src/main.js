@@ -1,6 +1,8 @@
 import './style.css'
 import { db } from './firebase.js'
 import { collection, getDocs, query, orderBy, addDoc, serverTimestamp } from 'firebase/firestore'
+import intlTelInput from 'intl-tel-input';
+import 'intl-tel-input/build/css/intlTelInput.css';
 
 document.querySelector('#app').innerHTML = `
 <!-- Navigation -->
@@ -253,8 +255,8 @@ document.querySelector('#app').innerHTML = `
 <input id="inquiry-email" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="john@sterling.com" type="email" required/>
 </div>
 <div class="space-y-2">
-<label class="text-xs uppercase tracking-widest font-black text-slate-500">WhatsApp (With Country Code)</label>
-<input id="inquiry-whatsapp" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="+1, +44, +233..." type="tel"/>
+<label class="text-xs uppercase tracking-widest font-black text-slate-500">WhatsApp Number</label>
+<input id="inquiry-whatsapp" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white" placeholder="" type="tel"/>
 </div>
 </div>
 <div class="space-y-2">
@@ -650,6 +652,23 @@ const loadEvents = async () => {
 
 // Inquiry Portal Handling
 const inquiryForm = document.getElementById('inquiry-form');
+const whatsappInput = document.getElementById('inquiry-whatsapp');
+let iti;
+
+if (whatsappInput) {
+  iti = intlTelInput(whatsappInput, {
+    initialCountry: "auto",
+    geoIpLookup: (callback) => {
+      fetch("https://ipapi.co/json")
+        .then((res) => res.json())
+        .then((data) => callback(data.country_code))
+        .catch(() => callback("GH"));
+    },
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    preferredCountries: ["gh", "ae", "us", "gb"]
+  });
+}
+
 if (inquiryForm) {
   inquiryForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -663,7 +682,7 @@ if (inquiryForm) {
       await addDoc(collection(db, "inquiries"), {
         name: document.getElementById('inquiry-name').value,
         email: document.getElementById('inquiry-email').value,
-        whatsapp: document.getElementById('inquiry-whatsapp').value,
+        whatsapp: iti ? iti.getNumber() : document.getElementById('inquiry-whatsapp').value,
         event: document.getElementById('inquiry-event').value,
         location: document.getElementById('inquiry-location').value,
         message: document.getElementById('inquiry-message').value,
@@ -757,9 +776,11 @@ const startHeroSlider = () => {
   }, 5000);
 };
 
-// Initialize Dynamic Loaders
-loadHero();
-loadMixes();
-loadVideos();
-loadGallery();
-loadEvents();
+// Initialize Dynamic Content
+if (db) {
+  loadHero();
+  loadMixes();
+  loadVideos();
+  loadGallery();
+  loadEvents();
+}

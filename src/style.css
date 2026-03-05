@@ -137,6 +137,48 @@
 @media (min-width: 1024px) {
   #hero {
     min-height: 85vh;
-    /* Balance between full screen and showing more of the image */
   }
+}
+
+/* International Tel Input Styling */
+.iti {
+  width: 100%;
+}
+
+.iti__country-list {
+  background-color: #0D0D0D !important;
+  border: 1px solid rgba(212, 175, 53, 0.2) !important;
+  border-radius: 0.5rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  z-index: 100 !important;
+}
+
+.iti__country {
+  padding: 10px 15px !important;
+}
+
+.iti__country:hover,
+.iti__country.iti__highlight {
+  background-color: rgba(212, 175, 53, 0.1) !important;
+}
+
+.iti__country-name,
+.iti__dial-code {
+  color: #ffffff !important;
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+.iti__flag-container {
+  padding: 4px !important;
+}
+
+.iti__arrow {
+  border-top-color: #d4af35 !important;
+}
+
+.iti__arrow--up {
+  border-bottom-color: #d4af35 !important;
 }
