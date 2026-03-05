@@ -109,8 +109,8 @@ document.querySelector('#app').innerHTML = `
 </div>
 <div class="flex-1 w-full">
 <span class="text-primary text-xs font-black uppercase tracking-widest">Now Premiering</span>
-<h4 id="main-track-title" class="text-3xl font-bold mt-2 mb-1">Afro House Experience</h4>
-<p id="main-track-subtitle" class="text-slate-400 mb-8 font-light italic">Live from Mykonos Summer Residency</p>
+<h4 id="main-track-title" class="text-3xl font-bold mt-2 mb-1">Loading...</h4>
+<p id="main-track-subtitle" class="text-slate-400 mb-8 font-light italic">Fetching from Cloud Vault</p>
 <!-- Visualizer Simulator -->
 <div id="waveform-container" class="flex items-end h-16 gap-1 mb-6">
 <div class="waveform-bar h-[40%]"></div>
@@ -129,13 +129,23 @@ document.querySelector('#app').innerHTML = `
 <div class="waveform-bar h-[75%]" style="animation-delay: 1.3s"></div>
 <div class="waveform-bar h-[90%]" style="animation-delay: 1.4s"></div>
 </div>
-<div class="flex items-center gap-8">
-<button id="main-prev-btn" class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_previous</span></button>
-<button id="main-play-btn" class="size-16 rounded-full bg-primary flex items-center justify-center text-background-dark shadow-[0_0_20px_rgba(212,175,53,0.4)] transition-transform hover:scale-110">
+<div class="flex flex-col md:flex-row items-center gap-6 md:gap-8 w-full justify-between">
+<div class="flex items-center justify-center gap-6 w-full md:w-auto">
+<button id="main-prev-btn" class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-3xl">skip_previous</span></button>
+<button id="main-play-btn" class="size-16 shrink-0 rounded-full bg-primary flex items-center justify-center text-background-dark shadow-[0_0_20px_rgba(212,175,53,0.4)] transition-transform hover:scale-110">
 <span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
 </button>
-<button id="main-next-btn" class="text-slate-400 hover:text-primary"><span class="material-symbols-outlined text-3xl">skip_next</span></button>
-<div id="main-track-time" class="ml-auto text-primary text-sm font-mono font-bold tracking-tighter">00:00 / 00:00</div>
+<button id="main-next-btn" class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-3xl">skip_next</span></button>
+</div>
+
+<div class="flex flex-row-reverse md:flex-row items-center justify-between w-full md:w-auto gap-4 md:ml-auto">
+<div id="main-track-time" class="text-primary text-sm font-mono font-bold tracking-tighter shrink-0">00:00 / 00:00</div>
+<div class="flex items-center gap-2 text-primary opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">volume_down</span>
+<input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1" class="w-20 md:w-24 accent-primary h-1 bg-white/20 rounded-lg appearance-none cursor-pointer">
+<span class="material-symbols-outlined text-sm">volume_up</span>
+</div>
+</div>
 </div>
 <audio id="global-audio" src="" class="hidden"></audio>
 <input type="file" id="audio-picker" class="hidden" accept="audio/*">
@@ -188,7 +198,7 @@ document.querySelector('#app').innerHTML = `
 <div class="relative">
 <div class="absolute -inset-4 border border-primary/20 rounded-lg -z-10 translate-x-4 translate-y-4"></div>
 <div class="relative rounded-lg overflow-hidden h-[400px] md:h-[700px] border-2 border-primary/30">
-<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Portrait of a sophisticated DJ in luxury attire" src="/about.jpg"/>
+<img class="w-full h-full object-cover md:grayscale md:hover:grayscale-0 transition-all duration-700" data-alt="Portrait of a sophisticated DJ in luxury attire" src="/about.jpg"/>
 <div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent"></div>
 <div class="absolute bottom-8 left-8 right-8 p-6 glass-card border-primary/40">
 <p class="text-primary font-bold uppercase tracking-widest text-sm mb-2">Based in Accra, Ghana</p>
@@ -429,6 +439,7 @@ const playlistItems = document.querySelectorAll('.playlist-item');
 const globalAudio = document.getElementById('global-audio');
 const audioPicker = document.getElementById('audio-picker');
 const loadCustomBtn = document.getElementById('load-custom-mix');
+const volumeSlider = document.getElementById('volume-slider');
 
 let isPlaying = false;
 let currentTrackIndex = -1;
@@ -479,6 +490,12 @@ if (mainTrackOverlay) {
 if (globalAudio) {
   globalAudio.addEventListener('timeupdate', updateTimeDisplay);
   globalAudio.addEventListener('ended', () => togglePlay(false));
+}
+
+if (volumeSlider && globalAudio) {
+  volumeSlider.addEventListener('input', (e) => {
+    globalAudio.volume = e.target.value;
+  });
 }
 
 // Initial listeners for static elements omitted as they are now handled dynamically
@@ -586,8 +603,25 @@ const loadMixes = async () => {
         globalAudio.src = src;
         togglePlay(true);
       }
+
+      // Highlight selected item
+      items.forEach(i => i.classList.remove('border-r-primary'));
+      item.classList.add('border-r-primary');
     });
   });
+
+  // Auto-load first track into player (without playing)
+  const firstItem = items[0];
+  if (firstItem) {
+    if (mainTrackTitle) mainTrackTitle.textContent = firstItem.dataset.title;
+    if (mainTrackSubtitle) mainTrackSubtitle.textContent = firstItem.dataset.subtitle;
+    if (mainTrackImg) mainTrackImg.src = firstItem.dataset.img;
+    if (globalAudio) {
+      globalAudio.src = firstItem.dataset.src;
+      globalAudio.load();
+    }
+    firstItem.classList.add('border-r-primary');
+  }
 };
 
 const loadGallery = async () => {
@@ -605,7 +639,7 @@ const loadGallery = async () => {
     const photo = docSnap.data();
     return `
             <div class="relative group rounded-xl overflow-hidden border border-white/10 break-inside-avoid">
-                <img src="${photo.imgUrl}" alt="${photo.title}" class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+                <img src="${photo.imgUrl}" alt="${photo.title}" class="w-full h-auto md:grayscale md:group-hover:grayscale-0 transition-all duration-700">
                 <div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
                     <p class="text-primary font-bold tracking-widest text-[10px] uppercase mb-1">${photo.subtitle}</p>
                     <p class="text-white text-lg font-bold">${photo.title}</p>
