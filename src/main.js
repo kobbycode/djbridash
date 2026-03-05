@@ -153,39 +153,10 @@ document.querySelector('#app').innerHTML = `
 <h2 class="text-primary text-sm font-bold tracking-[0.4em] uppercase mb-4">The Visual Experience</h2>
 <h3 class="text-4xl md:text-6xl font-black gold-gradient-text uppercase tracking-tighter">Videos</h3>
 </div>
-
-<div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
-<!-- Video Card 1 -->
-<a href="https://www.tiktok.com/@djbridash/video/7311140026343525637" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
-<div class="aspect-video relative overflow-hidden">
-<img src="/video_thumb_1.png" alt="DJ BRIDASH Performance Video" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-<div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/20 transition-all flex items-center justify-center">
-<div class="size-16 rounded-full bg-primary/90 text-background-dark flex items-center justify-center scale-90 group-hover:scale-100 transition-transform">
-<span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
-</div>
-</div>
-</div>
-<div class="p-6">
-<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Exclusive Rooftop Set • Dubai</h4>
-<p class="text-slate-400 text-sm">Experience the energy of the elite night scene.</p>
-</div>
-</a>
-
-<!-- Video Card 2 -->
-<a href="https://www.tiktok.com/@djbridash/video/7326789452311235846" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
-<div class="aspect-video relative overflow-hidden">
-<img src="/video_thumb_2.png" alt="DJ BRIDASH Gear Video" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-<div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/20 transition-all flex items-center justify-center">
-<div class="size-16 rounded-full bg-primary/90 text-background-dark flex items-center justify-center scale-90 group-hover:scale-100 transition-transform">
-<span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
-</div>
-</div>
-</div>
-<div class="p-6">
-<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Sonic Perfection • Technical Showcase</h4>
-<p class="text-slate-400 text-sm">Behind the decks with the master of vibes.</p>
-</div>
-</a>
+<div class="grid md:grid-cols-2 gap-8" id="videos-container">
+    <div class="animate-pulse glass-card p-12 rounded-xl border border-primary/20 text-center col-span-full">
+        <p class="text-primary/30 font-bold uppercase tracking-widest text-xs">Cuing Visual Content...</p>
+    </div>
 </div>
 </div>
 </section>
@@ -703,7 +674,42 @@ if (inquiryForm) {
   });
 }
 
+const loadVideos = async () => {
+  const container = document.getElementById('videos-container');
+  const q = query(collection(db, "videos"), orderBy("createdAt", "desc"));
+  const querySnapshot = await getDocs(q);
+
+  if (querySnapshot.empty) {
+    container.innerHTML = `<p class="col-span-full text-slate-500 text-center uppercase tracking-widest text-xs py-20">Visual content coming soon...</p>`;
+    return;
+  }
+
+  container.innerHTML = querySnapshot.docs.map(docSnap => {
+    const vid = docSnap.data();
+    return `
+      <a href="${vid.tiktokUrl}" target="_blank" class="group relative block rounded-xl overflow-hidden glass-card border border-white/5 hover:border-primary/50 transition-all duration-500">
+        <div class="aspect-video relative overflow-hidden">
+          <img src="${vid.thumbnail}" alt="${vid.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+          <div class="absolute inset-0 bg-background-dark/40 group-hover:bg-background-dark/20 transition-all flex items-center justify-center">
+            <div class="size-16 rounded-full bg-primary/90 text-background-dark flex items-center justify-center scale-90 group-hover:scale-100 transition-transform">
+              <span class="material-symbols-outlined text-4xl fill-1">play_arrow</span>
+            </div>
+          </div>
+          <div class="absolute top-3 right-3 bg-black/60 px-2 py-1 rounded flex items-center gap-1">
+            <i class="fa-brands fa-tiktok text-white text-xs"></i>
+            <span class="text-white text-[10px] font-bold uppercase">TikTok</span>
+          </div>
+        </div>
+        <div class="p-6 text-center">
+          <h4 class="text-xl font-bold group-hover:text-primary transition-colors">${vid.title}</h4>
+        </div>
+      </a>
+    `;
+  }).join('');
+};
+
 // Initialize Dynamic Loaders
 loadMixes();
+loadVideos();
 loadGallery();
 loadEvents();

@@ -25,6 +25,12 @@ service cloud.firestore {
       allow write: if isAuthenticated();
     }
 
+    // Videos (TikTok Showcase): Public read, Admin write
+    match /videos/{videoId} {
+      allow read: if true;
+      allow write: if isAuthenticated();
+    }
+
     // Inquiries: Admin read/write, Public write (for contact form)
     match /inquiries/{inquiryId} {
       allow create: if true;
