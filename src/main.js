@@ -664,9 +664,8 @@ if (whatsappInput) {
         .then((data) => callback(data.country_code))
         .catch(() => callback("GH"));
     },
-    loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@26.7.6/build/js/utils.js",
-    autoPlaceholder: "aggressive",
-    favouredCountries: ["gh", "ae", "us", "gb"]
+    loadUtils: () => import("intl-tel-input/utils"),
+    autoPlaceholder: "aggressive"
   });
 }
 

@@ -141,32 +141,68 @@
 }
 
 /* International Tel Input Styling */
-.iti {
+.iti--inline-dropdown {
   width: 100%;
 }
 
-.iti__country-list {
+.iti__dropdown-content {
   background-color: #0D0D0D !important;
   border: 1px solid rgba(212, 175, 53, 0.2) !important;
   border-radius: 0.5rem !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  overflow: hidden !important;
   z-index: 100 !important;
+}
+
+.iti__search-input-wrapper {
+  padding: 10px !important;
+  border-bottom: 1px solid rgba(212, 175, 53, 0.1) !important;
+  background-color: #1a1a1a !important;
+}
+
+.iti__search-input {
+  background-color: #0D0D0D !important;
+  border: 1px solid rgba(212, 175, 53, 0.3) !important;
+  border-radius: 4px !important;
+  color: white !important;
+  padding: 8px 12px 8px 35px !important;
+  font-size: 0.8rem !important;
+  width: 100% !important;
+}
+
+.iti__search-input:focus {
+  outline: none !important;
+  border-color: #d4af35 !important;
+  box-shadow: 0 0 0 2px rgba(212, 175, 53, 0.2) !important;
+}
+
+.iti__search-icon {
+  color: #d4af35 !important;
+  opacity: 0.7 !important;
+}
+
+.iti__country-list {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  max-height: 250px !important;
 }
 
 .iti__country {
   padding: 10px 15px !important;
+  transition: background-color 0.2s ease !important;
 }
 
 .iti__country:hover,
 .iti__country.iti__highlight {
-  background-color: rgba(212, 175, 53, 0.1) !important;
+  background-color: rgba(212, 175, 53, 0.15) !important;
 }
 
 .iti__country-name,
 .iti__dial-code {
   color: #ffffff !important;
   font-size: 0.75rem !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
 }
