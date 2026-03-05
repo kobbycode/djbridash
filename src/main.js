@@ -398,6 +398,9 @@ navLinks.forEach(anchor => {
         behavior: 'smooth'
       });
 
+      // Keep URL clean — no hash fragments
+      history.replaceState(null, '', window.location.pathname);
+
       // Immediately set active state on click
       navLinks.forEach(l => l.classList.remove('nav-link-active'));
       this.classList.add('nav-link-active');
