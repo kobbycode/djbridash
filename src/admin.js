@@ -724,9 +724,9 @@ const renderEventTypesManager = async () => {
                         `).join('')}
                     </div>
                     
-                    <form id="add-type-form" class="flex gap-2">
-                        <input id="new-type-input" type="text" placeholder="Add custom event type (e.g. Pool Side Party)" class="flex-1 bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-2.5 focus:outline-none focus:border-primary transition-colors text-white text-xs" required />
-                        <button type="submit" class="bg-primary text-background-dark px-6 py-2.5 rounded-lg font-black uppercase text-[10px] tracking-widest hover:scale-105 transition-all shadow-lg">Add Type</button>
+                    <form id="add-type-form" class="flex flex-col gap-3">
+                        <input id="new-type-input" type="text" placeholder="Add custom event type (e.g. Pool Side Party)" class="w-full bg-background-dark/50 border border-primary/20 rounded-lg px-4 py-3 focus:outline-none focus:border-primary transition-colors text-white text-xs" required />
+                        <button type="submit" class="w-full bg-primary text-background-dark px-6 py-3 rounded-lg font-black uppercase text-xs tracking-widest hover:scale-[1.02] transition-all shadow-lg text-center">Add Type</button>
                     </form>
                 </div>
             </div>
@@ -820,13 +820,13 @@ const renderInquiriesList = async () => {
                     ` : ''}
                 </div>
 
-                <!-- Event Details Grid -->
-                <div class="grid grid-cols-2 gap-3 mb-4 bg-white/5 p-3 rounded-lg border border-white/5">
+                <!-- Event Details Flex -->
+                <div class="flex flex-col gap-3 mb-4 bg-white/5 p-3 rounded-lg border border-white/5">
                     <div class="min-w-0">
                         <p class="text-[9px] text-slate-500 uppercase font-black mb-1">Target Event</p>
                         <p class="text-xs uppercase font-bold text-white truncate">${inq.event || 'GENERAL INQUIRY'}</p>
                     </div>
-                    <div class="min-w-0">
+                    <div class="min-w-0 pt-3 border-t border-white/5">
                         <p class="text-[9px] text-slate-500 uppercase font-black mb-1">Location Profile</p>
                         <p class="text-xs uppercase font-bold text-white truncate">${inq.location || 'UNDISCLOSED'}</p>
                     </div>
