@@ -588,7 +588,7 @@ const loadMixes = async () => {
                     <p class="text-[10px] text-slate-500 uppercase tracking-widest truncate">${mix.subtitle}</p>
                     
                     <!-- Social Share Icons -->
-                    <div class="flex items-center gap-3 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div class="flex items-center gap-3 mt-2 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
                         <button class="share-btn text-slate-400 hover:text-green-500 p-1" data-platform="whatsapp" title="Share on WhatsApp">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
                         </button>
