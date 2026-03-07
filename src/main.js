@@ -572,26 +572,59 @@ const loadMixes = async () => {
 
   container.innerHTML = querySnapshot.docs.map(docSnap => {
     const mix = docSnap.data();
+    const docId = docSnap.id;
     return `
-            <div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group" 
+            <div class="playlist-item glass-card p-4 rounded-lg flex items-center gap-4 border-r-4 border-r-transparent hover:border-r-primary transition-all cursor-pointer group relative" 
+                data-id="${docId}"
                 data-title="${mix.title}" 
                 data-subtitle="${mix.subtitle}" 
                 data-img="${mix.imgUrl}" 
                 data-src="${mix.audioUrl}">
-                <div class="size-16 rounded overflow-hidden shadow-lg border border-white/10">
+                <div class="size-16 rounded overflow-hidden shadow-lg border border-white/10 shrink-0">
                     <img class="w-full h-full object-cover" src="${mix.imgUrl}"/>
                 </div>
-                <div>
-                    <p class="font-bold group-hover:text-primary transition-colors uppercase text-sm tracking-tight">${mix.title}</p>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">${mix.subtitle}</p>
+                <div class="flex-grow min-w-0">
+                    <p class="font-bold group-hover:text-primary transition-colors uppercase text-sm tracking-tight truncate">${mix.title}</p>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest truncate">${mix.subtitle}</p>
+                    
+                    <!-- Social Share Icons -->
+                    <div class="flex items-center gap-3 mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="share-btn text-slate-400 hover:text-green-500 p-1" data-platform="whatsapp" title="Share on WhatsApp">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </button>
+                        <button class="share-btn text-slate-400 hover:text-blue-600 p-1" data-platform="facebook" title="Share on Facebook">
+                            <i class="fa-brands fa-facebook text-sm"></i>
+                        </button>
+                        <button class="share-btn text-slate-400 hover:text-white p-1" data-platform="x" title="Share on X">
+                            <i class="fa-brands fa-x-twitter text-sm"></i>
+                        </button>
+                        <button class="share-btn text-slate-400 hover:text-pink-500 p-1" data-platform="instagram" title="Copy for Instagram">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </button>
+                    </div>
                 </div>
-                <span class="material-symbols-outlined ml-auto text-slate-600 group-hover:text-primary transition-colors">play_circle</span>
+                <span class="material-symbols-outlined ml-auto text-slate-600 group-hover:text-primary transition-colors shrink-0">play_circle</span>
             </div>
         `;
   }).join('');
 
   // Re-attach play listeners (or use delegation)
   const items = container.querySelectorAll('.playlist-item');
+  // Share Button Listeners
+  container.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation(); // Don't trigger the play click
+      const item = btn.closest('.playlist-item');
+      const platform = btn.dataset.platform;
+      const mixData = {
+        id: item.dataset.id,
+        title: item.dataset.title,
+        subtitle: item.dataset.subtitle
+      };
+      shareMix(platform, mixData);
+    });
+  });
+
   items.forEach(item => {
     item.addEventListener('click', () => {
       const title = item.dataset.title;
@@ -613,17 +646,99 @@ const loadMixes = async () => {
     });
   });
 
-  // Auto-load first track into player (without playing)
+  // Auto-load logic (Handle Deep Link first, then fallback to first item)
+  handleDeepLink(items);
+};
+
+const shareMix = (platform, mix) => {
+  const shareUrl = `${window.location.origin}${window.location.pathname}?mix=${mix.id}`;
+  const text = `Check out this mix by DJ BRIDASH: ${mix.title} - ${mix.subtitle}`;
+
+  let url = '';
+  switch (platform) {
+    case 'whatsapp':
+      url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + shareUrl)}`;
+      break;
+    case 'facebook':
+      url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+      break;
+    case 'x':
+      url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`;
+      break;
+    case 'instagram':
+      // Instagram doesn't support web intents for URLs, copy to clipboard fallback
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        showToast("Link copied for Instagram Story!");
+      });
+      return;
+  }
+
+  if (url) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+};
+
+const handleDeepLink = async (items) => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const mixId = urlParams.get('mix');
+
+  if (mixId) {
+    // Look for the item in the current pre-loaded list first
+    const linkedItem = Array.from(items).find(i => i.dataset.id === mixId);
+    if (linkedItem) {
+      loadTrack(linkedItem);
+      return;
+    }
+
+    // If not in current list (e.g. paginated or hidden), fetch it specifically
+    try {
+      const docRef = doc(db, "mixes", mixId);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const mix = docSnap.data();
+        loadTrackFromData(mix);
+        return;
+      }
+    } catch (e) {
+      console.error("Error loading deep link:", e);
+    }
+  }
+
+  // Fallback to first item if no deep link or error
   const firstItem = items[0];
   if (firstItem) {
-    if (mainTrackTitle) mainTrackTitle.textContent = firstItem.dataset.title;
-    if (mainTrackSubtitle) mainTrackSubtitle.textContent = firstItem.dataset.subtitle;
-    if (mainTrackImg) mainTrackImg.src = firstItem.dataset.img;
-    if (globalAudio) {
-      globalAudio.src = firstItem.dataset.src;
+    loadTrack(firstItem, false); // Don't play auto-load
+  }
+};
+
+const loadTrack = (item, autoPlay = true) => {
+  if (mainTrackTitle) mainTrackTitle.textContent = item.dataset.title;
+  if (mainTrackSubtitle) mainTrackSubtitle.textContent = item.dataset.subtitle;
+  if (mainTrackImg) mainTrackImg.src = item.dataset.img;
+  if (globalAudio) {
+    globalAudio.src = item.dataset.src;
+    if (autoPlay) {
+      togglePlay(true);
+    } else {
       globalAudio.load();
     }
-    firstItem.classList.add('border-r-primary');
+  }
+
+  // Highlight in UI
+  const container = document.getElementById('playlist-container');
+  if (container) {
+    container.querySelectorAll('.playlist-item').forEach(i => i.classList.remove('border-r-primary'));
+    item.classList.add('border-r-primary');
+  }
+};
+
+const loadTrackFromData = (mix) => {
+  if (mainTrackTitle) mainTrackTitle.textContent = mix.title;
+  if (mainTrackSubtitle) mainTrackSubtitle.textContent = mix.subtitle;
+  if (mainTrackImg) mainTrackImg.src = mix.imgUrl;
+  if (globalAudio) {
+    globalAudio.src = mix.audioUrl;
+    globalAudio.load(); // Just load deep linked tracks, don't auto-play to respect user interaction
   }
 };
 
